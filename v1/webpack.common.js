@@ -1,5 +1,4 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CopyWebpackPlugin = require("copy-webpack-plugin")
 const path = require('path');
 
 module.exports = {
@@ -33,18 +32,35 @@ module.exports = {
         ]
       },
       {
-        test: /\.scss$/,
+        test: /\.(scss|css)$/,
         use:[
           "style-loader", // style nodes from js string
-          "css-loader", // translate css into commonjs
+          {
+            loader:"css-loader",
+            options:{
+              modules:{
+                localIdentName:"[local]--[hash:base64:5]"
+              }
+            }
+          }, // translate css into commonjs
           "sass-loader", // compiles sass to css, using node sass by default
         ]
       },
       {
-        test: /\.(png|jpe?g|gif|mp3|mp4|svg)$/i,
-        type: "asset/resource",
+        test: /\.(png|jpe?g|gif|svg)$/i,
+        loader:'url-loader',
+        options:{
+          name:'[name].[ext]?[hash]',
+          publicPath:'./dist/',
+          limit:10000
+        }
       },
-
+      {
+        test:/\.(mp3|mp4|gltf|glb)&/,
+        use:{
+          loader:'file-loader'
+        }
+      }
     ]
   },
   plugins:[
@@ -53,11 +69,6 @@ module.exports = {
     template:path.resolve(__dirname,"./index.html"),
     favicon:"./static/logo.png"
   }),
-  new CopyWebpackPlugin({
-    patterns:[{
-      from:"static"
-    }],
-  })
 ],
 
 }
