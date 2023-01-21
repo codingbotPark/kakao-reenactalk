@@ -1,30 +1,62 @@
+@import '../../style/variables';
 
 iphone-div{
     display: block;
     // width:350px;
-    // margin-top: 50px;
     width:400px;
     aspect-ratio:1/2;
-    // aspect-ratio:9/19.5;
     background-color: silver;
-    // border-radius: 50px;
-    border-radius: 60px;
-    position: fixed;
+    border-radius: 65px;
+    position: absolute;
+    // position: fixed;
+
     padding:3px;
     box-sizing: border-box;
+    .bezel{
+        width:100%;
+        height:100%;
+        border-radius: 63px;
+        background-color: black;
+        padding: 13px;
+        box-sizing: border-box;
+    }
+    .display{
+        width:100%;
+        height:100%;
+        border-radius: 50px;
+        background-color: white;
+        
+    }  
+    .dynamicIslandWrapper{
+        position: absolute;
+        width:100%;
+        height: 55px;
+        left:0px;
+        top:0px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-end;
+        .dynamicIsland{
+            box-sizing: border-box;
+            width: 110px;
+            height:30px;
+            border-radius: 30px;
+            background-color: black;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding:8px;
+            .selfCamera{
+                height:100%;
+                aspect-ratio: 1/1;
+                border-radius: 50%;
+                background-color: rgb(26, 24, 24);
+                .selfCameraLens{
+                    
+                }
+            }
+        }
+    }
 }
 
-.bezel{
-    width:100%;
-    height:100%;
-    border-radius: 59px;
-    background-color: black;
-    padding: 10px;
-    box-sizing: border-box;
-}
-.display{
-    width:100%;
-    height:100%;
-    // background-color: $main;
-    
-}  
