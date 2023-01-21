@@ -48,15 +48,60 @@ class Iphone extends HTMLElement{
 
     // 외부
     buttons(){
-        let muteButton1 = document.createElement('div')
-        muteButton1.className = I.muteButton
-        muteButton1.style.top = "0px";
-        muteButton1.style.left = "0px";
-        this.appendChild(muteButton1,)
-        
+        let muteButton = document.createElement("button")
+        muteButton.className = I.muteButton
+        muteButton.style.top = "170px";
+        muteButton.style.left = "-3px";
+        this.appendChild(muteButton)
+
+        let volumeUpButton = document.createElement("button")
+        volumeUpButton.className = I.muteButton
+        volumeUpButton.style.top = "170px";
+        volumeUpButton.style.left = "-3px";
+        this.appendChild(volumeUpButton)
+
+        let volumeDownButton = document.createElement("button")
+        volumeDownButton.className = I.muteButton
+        volumeDownButton.style.top = "170px";
+        volumeDownButton.style.left = "-3px";
+        this.appendChild(volumeDownButton)
     }
     sideMarks(){
+        let sideMark1 = document.createElement("div")
+        sideMark1.className = I.sideMark1
+        sideMark1.style.top = "100px";
+        sideMark1.style.left = "0px";
+        this.appendChild(sideMark1);
 
+        let sideMark2 = document.createElement('div')
+        sideMark2.className = I.sideMark1
+        sideMark2.style.bottom = "100px"
+        sideMark2.style.left = "0px"
+        this.appendChild(sideMark2);
+
+        let sideMark3 = document.createElement('div')
+        sideMark3.className = I.sideMark1
+        sideMark3.style.top = "100px"
+        sideMark3.style.right = "0px"
+        this.appendChild(sideMark3);
+
+        let sideMark4 = document.createElement('div')
+        sideMark4.className = I.sideMark1
+        sideMark4.style.bottom = "100px"
+        sideMark4.style.right = "0px"
+        this.appendChild(sideMark4);
+
+        let sideMark5 = document.createElement('div')
+        sideMark5.className = I.sideMark2
+        sideMark5.style.top = "0px"
+        sideMark5.style.right = "100px"
+        this.appendChild(sideMark5);
+
+        let sideMark6 = document.createElement('div')
+        sideMark6.className = I.sideMark2
+        sideMark6.style.bottom = "0px"
+        sideMark6.style.left = "100px"
+        this.appendChild(sideMark6);
     }
 
 }

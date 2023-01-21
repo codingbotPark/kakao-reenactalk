@@ -1,6 +1,21 @@
 @import '../../style/variables';
 
 
+@mixin sideMark($width,$height){
+    position: absolute;
+    background-color: gray;
+    width:$width;
+    height:$height;
+}
+@mixin button($height,$left-radius,$top-redius,$right-redius,$bottom-redius){
+    height:$height;
+    width:3px;
+    position: absolute;
+    border:0px;
+    padding: 0px;
+    border-radius: $left-radius $top-redius $right-redius $bottom-redius;
+}
+
 iphone-div{
 
     margin: 60px;
@@ -12,14 +27,18 @@ iphone-div{
     position: fixed;
 
     padding:3px;
+    border:1px solid black;
     box-sizing: border-box;
+
+    .sideMark1{
+        @include sideMark(3px,15px);
+    }
+    .sideMark2{
+        @include sideMark(15px,3px);
+    }
+
     .muteButton{
-        position: absolute;
-        left:0px;
-        top:100px;
-        width:3px;
-        height:15px;
-        background-color: gray;
+        @include button(25px,7px ,0px ,0px ,7px)
     }
 
 
