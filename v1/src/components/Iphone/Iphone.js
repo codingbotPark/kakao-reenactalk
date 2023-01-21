@@ -1,5 +1,7 @@
 import I from "./Iphone.style.scss"
+import chat1 from "../../model/chat1"
 
+// innerHtml은 이전 내용을 없앤다
 class Iphone extends HTMLElement{
     connectedCallback() {
         this.innerIphone()
@@ -10,11 +12,12 @@ class Iphone extends HTMLElement{
         this.phoneFrame()
         this.dynamicIsland()
     }
-
     outerIphone(){
-        
+        this.buttons()
+        this.sideMarks()
     }
 
+    // 내부
     phoneFrame(){
         let bezel = document.createElement('div')
         bezel.className = I.bezel
@@ -22,9 +25,9 @@ class Iphone extends HTMLElement{
 
         let iphoneDisplay = document.createElement('div')
         iphoneDisplay.className = I.display
+        iphoneDisplay.style.backgroundColor=chat1.displayColor
         bezel.appendChild(iphoneDisplay)
     }
-
     dynamicIsland(){
         let dynamicIslandWrapper = document.createElement('div')
         dynamicIslandWrapper.className = I.dynamicIslandWrapper
@@ -43,7 +46,20 @@ class Iphone extends HTMLElement{
         selfCamera.appendChild(selfCameraLens)
     }
 
+    // 외부
+    buttons(){
+        let muteButton1 = document.createElement('div')
+        muteButton1.className = I.muteButton
+        muteButton1.style.top = "0px";
+        muteButton1.style.left = "0px";
+        this.appendChild(muteButton1,)
+        
+    }
+    sideMarks(){
+
+    }
+
 }
 
 customElements.define('iphone-div',Iphone)
-export default document.createElement('iphone-div')
+export default document.createElement('iphone-div');

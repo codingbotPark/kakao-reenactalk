@@ -1,17 +1,28 @@
 @import '../../style/variables';
 
+
 iphone-div{
+
+    margin: 60px;
     display: block;
-    // width:350px;
     width:400px;
     aspect-ratio:1/2;
     background-color: silver;
     border-radius: 65px;
-    position: absolute;
-    // position: fixed;
+    position: fixed;
 
     padding:3px;
     box-sizing: border-box;
+    .muteButton{
+        position: absolute;
+        left:0px;
+        top:100px;
+        width:3px;
+        height:15px;
+        background-color: gray;
+    }
+
+
     .bezel{
         width:100%;
         height:100%;
@@ -24,8 +35,6 @@ iphone-div{
         width:100%;
         height:100%;
         border-radius: 50px;
-        background-color: white;
-        
     }  
     .dynamicIslandWrapper{
         position: absolute;

@@ -21,4 +21,4 @@ class App extends HTMLElement {
 }
 
 customElements.define('app-div',App)
-export default document.createElement('app-div')
+// export default document.createElement('app-div')

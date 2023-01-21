@@ -1,7 +1,11 @@
 // import "./style/_variable.scss"
-import "./index.style.scss"
-import App from "./App"
+import I from "./index.style.scss"
+import "./App"
 
 const body = document.getElementsByTagName('body')[0]
-body.appendChild(App)
+body.innerHTML = `
+    <div class=${I.index}>
+      <app-div/>
+    </div>
+`
 
