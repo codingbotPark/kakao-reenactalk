@@ -38,7 +38,24 @@ iphone-div{
     }
 
     .muteButton{
-        @include button(25px,7px ,0px ,0px ,7px)
+        @include button(25px,7px ,0px ,0px ,7px);
+        top:170px;
+        left:-3px;
+    }
+    .volumeUpButton{
+        @include button(50px,7px,0px,0px,7px);
+        top:225px;
+        left:-3px;
+    }
+    .volumeDownButton{
+        @include button(50px,7px,0px,0px,7px);
+        top:290px;
+        left:-3px;
+    }
+    .powerButton{
+        @include button(90px,0px,7px,7px,0px);
+        top:260px;
+        right:-3px;
     }
 
 
