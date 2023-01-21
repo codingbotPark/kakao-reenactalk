@@ -18,27 +18,33 @@ class Iphone extends HTMLElement {
             class=${I.display}
             style="background-color:${chat1.displayColor}"
           >
+            <div class=${I.contentTemp} ></div>
             ${
                 chat1.content.map((cont,idx) => (
                     `<div
                         class=${cont.user ? I.otherContent : I.myContent }
                     >${cont.profile ? 
                         `
-                        <div class=${I.profileImgWrapper}>
-
-                        </div>
-                        <div class=${I.otherText} >
-                            ${cont.text}
+                        <img class=${I.profile} src=${cont.profile} />
+                        <div class=${I.otherTextWrapper} >
+                            <div class=${I.otherUser} >
+                                ${cont.user}
+                            </div>
+                            <div class=${I.otherText} >
+                                <div class=${I.otherTextDeco} ></div>
+                                ${cont.text}
+                            </div>
                         </div>
                         `
                     :
                         `
                         <div class=${I.myText} >
+                            <div class=${I.myTextDeco}></div>
                             ${cont.text}
                         </div>
                         `
                 }</div>`
-                ))
+                )).join("")
             }
           </div>
         </div>
