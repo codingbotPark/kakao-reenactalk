@@ -59,6 +59,7 @@ iphone-div{
     }
 
 
+
     .bezel{
         width:100%;
         height:100%;
@@ -71,6 +72,20 @@ iphone-div{
         width:100%;
         height:100%;
         border-radius: 50px;
+        display: flex;
+        flex-direction: column;
+
+        .otherContent{
+            .otherText{
+                
+            }
+        }
+        .myContent{
+            .myText{
+
+            }
+        }
+
     }  
     .dynamicIslandWrapper{
         position: absolute;

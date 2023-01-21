@@ -4,16 +4,50 @@ import chat1 from "../../model/chat1";
 // innerHtml은 이전 내용을 없앤다
 class Iphone extends HTMLElement {
   connectedCallback() {
+    this.addDisplay()
+    this.addDynamicIsland()
+    this.addMarks()
+    this.addButtons()
+  }
+
+  addDisplay(){
+    // dispaly
     this.addInnerHtmlToThis(`
         <div class=${I.bezel}>
           <div
             class=${I.display}
             style="background-color:${chat1.displayColor}"
-          ></div>
+          >
+            ${
+                chat1.content.map((cont,idx) => (
+                    `<div
+                        class=${cont.user ? I.otherContent : I.myContent }
+                    >${cont.profile ? 
+                        `
+                        <div class=${I.profileImgWrapper}>
+
+                        </div>
+                        <div class=${I.otherText} >
+                            ${cont.text}
+                        </div>
+                        `
+                    :
+                        `
+                        <div class=${I.myText} >
+                            ${cont.text}
+                        </div>
+                        `
+                }</div>`
+                ))
+            }
+          </div>
         </div>
     `);
+  }
 
-    this.addInnerHtmlToThis(`
+  addDynamicIsland(){
+        // dynamicIsland
+        this.addInnerHtmlToThis(`
         <div class=${I.dynamicIslandWrapper}>
         <div class=${I.dynamicIsland}>
             <div class=${I.selfCamera}>
@@ -22,7 +56,10 @@ class Iphone extends HTMLElement {
         </div>
     </div>
         `);
+  }
 
+  addMarks(){
+    // marks
     this.addInnerHtmlToThis(`
         <div>
         <div 
@@ -51,9 +88,11 @@ class Iphone extends HTMLElement {
         ></div>
     </div>
         `);
+  }
 
-    
-    this.addInnerHtmlToThis(`
+  addButtons(){
+        // buttons
+        this.addInnerHtmlToThis(`
         <button class=${I.muteButton} ></button>
         <button class=${I.volumeUpButton} ></button>
         <button class=${I.volumeDownButton} ></button>
@@ -68,6 +107,7 @@ class Iphone extends HTMLElement {
             ${html}
     `;
   }
+
 }
 
 customElements.define("iphone-div", Iphone);
