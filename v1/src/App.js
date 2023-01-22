@@ -1,4 +1,5 @@
 import Iphone from "./components/Iphone/Iphone"
+import chat1 from "./model/chat1"
 
 // class App extends HTMLDivElement {
 //     connectedCallback(){
@@ -16,7 +17,8 @@ import Iphone from "./components/Iphone/Iphone"
 
 class App extends HTMLElement {
     connectedCallback(){
-        this.appendChild(Iphone)
+        let iphone = this.appendChild(Iphone)
+        iphone.setAttribute("content",chat1.content)
     }
 }
 

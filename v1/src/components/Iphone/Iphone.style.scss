@@ -82,10 +82,14 @@ iphone-div{
             width:100%;
             height: 100px;
         }
-        .otherContent{
+        .content{
             width:100%;
             display: flex;
             margin-top: 20px;
+            // 처음엔 보이지 않게 한다
+            display: none;
+        }
+        .otherContent{
             .profile{
                 width:35px;
                 height:35px;
@@ -102,7 +106,6 @@ iphone-div{
                     font-size: 13px;
                 }
                 
-
                 // 유저 텍스트
                 .otherText{
                     margin-top: 7px;
@@ -131,11 +134,7 @@ iphone-div{
             }
         }
         .myContent{
-            width:100%;
-            display: flex;
             justify-content: flex-end;
-            margin-top: 20px;
-
             .myText{
                 padding: 5px 7px 7px 7px;
                 margin-right: 15px;
@@ -146,6 +145,8 @@ iphone-div{
                 color:$kakaoFontColor;
                 line-height: 1.3rem;
                 position: relative;
+                z-index: 1;
+
                 .myTextDeco{
                     width: 0px;
                     height: 0px;
@@ -154,6 +155,7 @@ iphone-div{
                     border-left: 10px solid transparent;
                     border-right: 10px solid transparent;
                     position: absolute;
+                    z-index: -1;
                     right:-7px;
                     top:5px;
                 }

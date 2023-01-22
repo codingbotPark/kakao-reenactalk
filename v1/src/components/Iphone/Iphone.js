@@ -3,15 +3,27 @@ import chat1 from "../../model/chat1";
 
 // innerHtml은 이전 내용을 없앤다
 class Iphone extends HTMLElement {
+
   connectedCallback() {
     this.addDisplay()
     this.addDynamicIsland()
     this.addMarks()
     this.addButtons()
+    
+    this.controlleContent()
   }
+
+  static get observedAttributes(){
+    return ['content']
+  }
+  attributeChangedCallback(){
+  }
+
+ displayContent = ""
 
   addDisplay(){
     // dispaly
+    this.editDisplayContent()
     this.addInnerHtmlToThis(`
         <div class=${I.bezel}>
           <div
@@ -19,33 +31,7 @@ class Iphone extends HTMLElement {
             style="background-color:${chat1.displayColor}"
           >
             <div class=${I.contentTemp} ></div>
-            ${
-                chat1.content.map((cont,idx) => (
-                    `<div
-                        class=${cont.user ? I.otherContent : I.myContent }
-                    >${cont.profile ? 
-                        `
-                        <img class=${I.profile} src=${cont.profile} />
-                        <div class=${I.otherTextWrapper} >
-                            <div class=${I.otherUser} >
-                                ${cont.user}
-                            </div>
-                            <div class=${I.otherText} >
-                                <div class=${I.otherTextDeco} ></div>
-                                ${cont.text}
-                            </div>
-                        </div>
-                        `
-                    :
-                        `
-                        <div class=${I.myText} >
-                            <div class=${I.myTextDeco}></div>
-                            ${cont.text}
-                        </div>
-                        `
-                }</div>`
-                )).join("")
-            }
+            ${this.displayContent}
           </div>
         </div>
     `);
@@ -104,6 +90,54 @@ class Iphone extends HTMLElement {
         <button class=${I.volumeDownButton} ></button>
         <button class=${I.powerButton} ></button>
     `)
+  }
+
+  editDisplayContent(){
+    this.displayContent = chat1.content.map((cont,idx) => (
+        `<div
+            class="${cont.user ? I.otherContent : I.myContent} ${I.content}"
+        >${cont.profile ? 
+            `
+            <img class=${I.profile} src=${cont.profile} />
+            <div class=${I.otherTextWrapper} >
+                <div class=${I.otherUser} >
+                    ${cont.user}
+                </div>
+                <div class=${I.otherText} >
+                    <div class=${I.otherTextDeco} ></div>
+                    ${cont.text}
+                </div>
+            </div>
+            `
+        :
+            `
+            <div class=${I.myText} >
+                <div class=${I.myTextDeco}></div>
+                ${cont.text}
+            </div>
+            `
+    }</div>`
+    )).join("")
+  }
+
+  controlleContent(){
+    let display = document.querySelectorAll(`.${I.content}`)
+    window.addEventListener("scroll",() => {
+        // ui버그가 발생할 수 있어서 for문으로 다 돌려준다
+        let scroll = window.scrollY
+        let windowSide = window.innerHeight
+        let scrollToIdx = Math.floor(scroll/windowSide)
+        // make display flex
+        for (let i = 0;i<scrollToIdx;i++){
+            display[i].style.display = "flex"
+        }
+        // make display none
+        for (let i = scrollToIdx;i<display.length;i++){
+            display[i].style.display = "none"
+        }
+    })
+
+
   }
 
 
