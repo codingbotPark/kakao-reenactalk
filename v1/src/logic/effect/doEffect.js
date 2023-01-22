@@ -1,6 +1,7 @@
 export default {
     fadeIn:(dom) => {
-        dom.style.transition="opacity 1s"
+        console.log(dom)
+        dom.style.transition="display 1s"
         dom.style.opacity = 1
     },
     fadeOut:(dom) => {

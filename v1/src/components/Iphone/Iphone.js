@@ -128,22 +128,25 @@ class Iphone extends HTMLElement {
         let scroll = window.scrollY
         let windowSide = window.innerHeight
         let scrollToIdx = Math.floor(scroll/windowSide)
+
         // make display flex
         for (let i = 0;i<scrollToIdx;i++){
             // 이전 값과 비교를 해서 효과가 한 번만 일어나게 한다
             if (!(display[i].style.display === "flex")){
-                display[i].style.display = "flex"
+                // display[i].style.display = "flex"
+
                 directEffect(
                     chat1.content[i].effectMode,
                     chat1.content[i].effect.split("/")[0],
                     display[i]
-                )
+                    )
             }
         }
         // make display none
         for (let i = scrollToIdx;i<display.length;i++){
             if (!(display[i].style.display === "none")){
-                display[i].style.display = "none"
+                // display[i].style.display = "none"
+                console.log("들어옴")
                 // doEffect
                 directEffect(
                     chat1.content[i].effectMode,
