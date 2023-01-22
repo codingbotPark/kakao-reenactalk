@@ -1,5 +1,6 @@
 import I from "./Iphone.style.scss";
 import chat1 from "../../model/chat1";
+import directEffect from "../../logic/effect/directEffect";
 
 // innerHtml은 이전 내용을 없앤다
 class Iphone extends HTMLElement {
@@ -95,7 +96,7 @@ class Iphone extends HTMLElement {
   editDisplayContent(){
     this.displayContent = chat1.content.map((cont,idx) => (
         `<div
-            class="${cont.user ? I.otherContent : I.myContent} ${I.content}"
+            class="${cont.user ? I.otherContent : I.myContent} ${I.content} ${I[cont.effectMode]}"
         >${cont.profile ? 
             `
             <img class=${I.profile} src=${cont.profile} />
@@ -129,11 +130,27 @@ class Iphone extends HTMLElement {
         let scrollToIdx = Math.floor(scroll/windowSide)
         // make display flex
         for (let i = 0;i<scrollToIdx;i++){
-            display[i].style.display = "flex"
+            // 이전 값과 비교를 해서 효과가 한 번만 일어나게 한다
+            if (!(display[i].style.display === "flex")){
+                display[i].style.display = "flex"
+                directEffect(
+                    chat1.content[i].effectMode,
+                    chat1.content[i].effect.split("/")[0],
+                    display[i]
+                )
+            }
         }
         // make display none
         for (let i = scrollToIdx;i<display.length;i++){
-            display[i].style.display = "none"
+            if (!(display[i].style.display === "none")){
+                display[i].style.display = "none"
+                // doEffect
+                directEffect(
+                    chat1.content[i].effectMode,
+                    chat1.content[i].effect.split("/")[1],
+                    display[i],
+                )
+            }
         }
     })
 

@@ -84,10 +84,13 @@ iphone-div{
         }
         .content{
             width:100%;
-            display: flex;
             margin-top: 20px;
             // 처음엔 보이지 않게 한다
             display: none;
+        }
+        // static일 땐 opacity 가 0이다
+        .static{
+            opacity: 0;
         }
         .otherContent{
             .profile{

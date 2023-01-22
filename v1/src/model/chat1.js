@@ -12,7 +12,8 @@ export default {
         {
             text:"안녕하세요",
             effectMode:"static",
-            effect:"fadeRight/fadeLeft"
+            effect:"fadeIn/fadeOut"
+
         },
         {
             profile:"https://avatars.githubusercontent.com/u/85085375?v=4",
@@ -29,7 +30,8 @@ export default {
             아쉽겠지만,
             올해 글로벌 진행하기가 어렵겠지요. ㅠㅠ`,
             effectMode:"static",
-            effect:"fadeLeft/fadeRight"
+            effect:"fadeIn/fadeOut"
+
         },
         {
             text:`안녕하세요 저는 박병관 입니다, 저의 닉네임이자 깃허브 id는 codingbotPark입니다
@@ -37,7 +39,26 @@ export default {
             닉네임의 의미는 처음에는 codingbot이라는 표현이 귀여워서 했지만, 현재는 코딩봇처럼 꾸준하게 코딩하자는 의미로 사용하고 있습니다
             `,
             effectMode:"static",
-            effect:"fadeRight/fadeLeft",
+            effect:"fadeIn/fadeOut"
+
+        },
+        {
+            text:`안녕하세요 저는 박병관 입니다, 저의 닉네임이자 깃허브 id는 codingbotPark입니다
+            
+            닉네임의 의미는 처음에는 codingbot이라는 표현이 귀여워서 했지만, 현재는 코딩봇처럼 꾸준하게 코딩하자는 의미로 사용하고 있습니다
+            `,
+            effectMode:"static",
+            effect:"fadeIn/fadeOut"
+
+        },
+        {
+            text:`안녕하세요 저는 박병관 입니다, 저의 닉네임이자 깃허브 id는 codingbotPark입니다
+            
+            닉네임의 의미는 처음에는 codingbot이라는 표현이 귀여워서 했지만, 현재는 코딩봇처럼 꾸준하게 코딩하자는 의미로 사용하고 있습니다
+            `,
+            effectMode:"static",
+            effect:"fadeIn/fadeOut"
+
         }
     ]
 }
