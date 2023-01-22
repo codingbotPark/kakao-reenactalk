@@ -20,22 +20,29 @@ class Iphone extends HTMLElement {
   attributeChangedCallback(){
   }
 
- displayContent = ""
 
   addDisplay(){
     // dispaly
     this.editDisplayContent()
     this.addInnerHtmlToThis(`
         <div class=${I.bezel}>
-          <div
-            class=${I.display}
-            style="background-color:${chat1.displayColor}"
-          >
+            <header class=${I.contentHeader} >
+                <div></div>
+            </header>
+            <div
+                class=${I.display}
+                style="background-color:${chat1.displayColor}"
+            >
+
             <div class=${I.contentTemp} ></div>
             ${this.displayContent}
           </div>
         </div>
     `);
+
+    // 선택한 displayColor에 맞게 style파일에 전달
+    let header = document.querySelector(`.${I.contentHeader}`)
+    header.style.setProperty("--displayColor",chat1.displayColor)
   }
 
   addDynamicIsland(){
@@ -120,7 +127,10 @@ class Iphone extends HTMLElement {
     }</div>`
     )).join("")
   }
-
+  
+  /**
+   * @todo 마지막 한 칸은 스크롤 auto로 해서 볼 수 있게
+   */
   controlleContent(){
     let display = document.querySelectorAll(`.${I.content}`)
     window.addEventListener("scroll",() => {
@@ -132,9 +142,7 @@ class Iphone extends HTMLElement {
         // make display flex
         for (let i = 0;i<scrollToIdx;i++){
             // 이전 값과 비교를 해서 효과가 한 번만 일어나게 한다
-            if (!(display[i].style.display === "flex")){
-                // display[i].style.display = "flex"
-
+            if (!(display[i].style.opacity === "1")){
                 directEffect(
                     chat1.content[i].effectMode,
                     chat1.content[i].effect.split("/")[0],
@@ -144,9 +152,7 @@ class Iphone extends HTMLElement {
         }
         // make display none
         for (let i = scrollToIdx;i<display.length;i++){
-            if (!(display[i].style.display === "none")){
-                // display[i].style.display = "none"
-                console.log("들어옴")
+            if (!(display[i].style.opacity === "0")){
                 // doEffect
                 directEffect(
                     chat1.content[i].effectMode,

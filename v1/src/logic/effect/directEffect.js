@@ -9,7 +9,6 @@ export default function directEffect(effectMode,effect,dom){
     if (effectMode === "static"){
         switch(effect){
             case "fadeIn":
-                console.log("들어옴")
                 doEffect.fadeIn(dom)
                 break;
             case "fadeOut":

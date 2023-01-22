@@ -70,17 +70,36 @@ iphone-div{
         background-color: black;
         padding: 13px;
         box-sizing: border-box;
+        position:relative;
+
     }
+
+    // 톡방의 헤더
+    .contentHeader{
+        height:90px;
+        width:calc(100% - 26px);
+        background-color:var(--displayColor);
+        opacity: 0.8;
+        position: absolute;
+        left: 13px;
+        top:13px;
+        border-radius: 50px 50px 0px 0px;
+        z-index: 2;
+    }
+
+
     .display{
         width:100%;
         height:100%;
         border-radius: 50px;
         display: flex;
         flex-direction: column;
+        position: relative;
+        // overflow-y: hidden;
 
         .contentTemp{
             width:100%;
-            margin-top: 100px;
+            margin-top: 90px;
         }
         .content{
             width:100%;
@@ -167,6 +186,7 @@ iphone-div{
 
     }  
     .dynamicIslandWrapper{
+        z-index:3;
         position: absolute;
         width:100%;
         height: 55px;
