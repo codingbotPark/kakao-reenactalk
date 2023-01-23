@@ -135,15 +135,23 @@ class Iphone extends HTMLElement {
     let display = document.querySelector(`.${I.display}`)
     let comment = document.querySelectorAll(`.${I.content}`)
 
-    // 기본 header가 90px이기 때문에
-    let scrollTemp = 90;
-    let temp = 0;
-
     window.addEventListener("scroll",() => {
         // ui버그가 발생할 수 있어서 for문으로 다 돌려준다
         let scroll = window.scrollY
         let windowSide = window.innerHeight
         let scrollToIdx = Math.floor(scroll/windowSide)
+
+        // 마이너스를 먼저해서 scrollTemp를 전처리 시킨다
+        for (let i = scrollToIdx;i<comment.length;i++){
+            if (!(comment[i].style.opacity === "0")){
+                // doEffect
+                directEffect(
+                    chat1.content[i].effectMode,
+                    chat1.content[i].effect.split("/")[1],
+                    comment[i],
+                )
+            }
+        }
 
         for (let i = 0;i<scrollToIdx;i++){
             // 이전 값과 비교를 해서 효과가 한 번만 일어나게 한다
@@ -153,29 +161,10 @@ class Iphone extends HTMLElement {
                     chat1.content[i].effect.split("/")[0],
                     comment[i]
                     )
-                
-                // if(display.clientHeight < scrollTemp + comment[i].clientHeight){
-                //     display.scrollTop = comment[i].clientHeight
-                // }
-                // scrollTemp += comment[i].clientHeight
             }
         }
 
-        for (let i = scrollToIdx;i<comment.length;i++){
-            if (!(comment[i].style.opacity === "0")){
-                // doEffect
-                directEffect(
-                    chat1.content[i].effectMode,
-                    chat1.content[i].effect.split("/")[1],
-                    comment[i],
-                )
 
-                // scrollTemp -= comment[i].clientHeight
-                // if (scrollTemp )
-                // scrollTemp -= comment[i].clientHeight
-                // display.scrollTop = scrollTemp < display.clientHeight && 0
-            }
-        }
     })
 
   }
