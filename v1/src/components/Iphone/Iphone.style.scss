@@ -95,6 +95,7 @@ iphone-div{
         display: flex;
         flex-direction: column;
         position: relative;
+        overflow-y: scroll;
         // overflow-y: hidden;
 
         .contentTemp{
