@@ -1,8 +1,10 @@
 import chat1 from "../../model/chat1";
 import I from "./Iphone.style.scss";
+import plusSvg from "../../assets/plusSvg.svg"
 
 export default {
   /** 기본적인 display */
+  // header는 휴대폰 기준으로 fixed 되어야 하기 때문에 bezel에 추가해줬다
   addDisplay: () => {
     return `
         <div class=${I.bezel}>
@@ -11,7 +13,7 @@ export default {
               style="background-color:${chat1.displayColor}"
             >
               <div></div>
-        </header>
+          </header>
         <div
             class=${I.display}
             style="background-color:${chat1.displayColor}"
@@ -47,6 +49,18 @@ export default {
       `
       }</div>`
     )).join(""))
+  },
+  addChattingBar:() => {
+    return `
+      <div class=${I.lastContent} >
+        <div>
+          <div class=${I.inputWrapper} >
+            <img src=${plusSvg} alt="추가" />
+            <input class=${I.chatInput} />
+          </div>
+        </div>
+      </div>
+    `
   },
   addButtons:() => {
     return `
@@ -94,6 +108,13 @@ export default {
             <div class=${I.selfCameraLens}></div>
           </div>
         </div>
+      </div>
+    `
+  },
+  addHomeIndicator:() => {
+    return `
+      <div class=${I.HomeIndicatorWrapper}>
+        <div></div>
       </div>
     `
   }

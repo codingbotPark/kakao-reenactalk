@@ -12,7 +12,11 @@ class Iphone extends HTMLElement {
     this.addInnerHtmlToThis(ui.addButtons())
     this.addInnerHtmlToThis(ui.addMarks())
     this.addInnerHtmlToThis(ui.addDynamicIsland())
+    this.addInnerHtmlToThis(ui.addHomeIndicator())
+
     this.addInnerHtmlToThis(ui.addDisplayContent(),`.${I.display}`)
+    this.addInnerHtmlToThis(ui.addChattingBar(),`.${I.bezel}`)
+
     this.controlleContent()
   }
 
@@ -62,55 +66,6 @@ class Iphone extends HTMLElement {
                 )
             }
         })
-
-        // comments.forEach((comment,idx) => {
-        //     // 아래로
-        //     if (idx < scrollToIdx && comment.style.opacity === "0"){
-        //         comment.style.opacity = "1"
-        //         console.log("들어옴")
-        //         // directEffect(
-        //         //     chat1.content[idx].effectMode,
-        //         //     chat1.content[idx].effect.out,
-        //         //     comment
-        //         // )
-        //     } 
-        //     // 위로
-        //     else if (idx >= scrollToIdx && comment.style.opacity === "1") { 
-        //         comment.style.opacity = "0"
-        //         // directEffect(
-        //         //     chat1.content[idx].effectMode,
-        //         //     chat1.content[idx].effect.in,
-        //         //     comment
-        //         // )
-        //     }
-        // })
-
-
-        // ----------
-
-        // // 마이너스를 먼저해서 리랜더링 됐을 때를 처리해준다
-        // for (let i = scrollToIdx;i<comment.length;i++){
-        //     if (!(comment[i].style.opacity === "0")){
-        //         // doEffect
-        //         directEffect(
-        //             chat1.content[i].effectMode,
-        //             chat1.content[i].effect.split("/")[1],
-        //             comment[i],
-        //         )
-        //     }
-        // }
-
-        // for (let i = 0;i<scrollToIdx;i++){
-        //     // 이전 값과 비교를 해서 효과가 한 번만 일어나게 한다
-        //     if (!(comment[i].style.opacity === "1")){
-        //         directEffect(
-        //             chat1.content[i].effectMode,
-        //             chat1.content[i].effect.split("/")[0],
-        //             comment[i]
-        //             )
-        //     }
-        // }
-
 
     })
 
