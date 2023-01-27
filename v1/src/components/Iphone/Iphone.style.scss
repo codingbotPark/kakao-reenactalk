@@ -150,9 +150,8 @@ iphone-div {
         display: flex;
         flex-direction: column;
         position: relative;
-        overflow-y: auto;
-
-        // overflow-y: hidden;
+        // overflow-y: auto;
+        overflow-y: hidden;
         .contentTemp {
             width: 100%;
             margin-top: 90px;
@@ -245,6 +244,12 @@ iphone-div {
                     top: 5px;
                 }
             }
+        }
+
+        .chattingBarTemp{
+            margin-top: 100px;
+            height:100px;
+            width:100%;
         }
 
     }

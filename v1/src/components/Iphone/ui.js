@@ -48,7 +48,8 @@ export default {
       </div>
       `
       }</div>`
-    )).join(""))
+    )).join("")
+    )
   },
   addChattingBar:() => {
     return `
@@ -116,6 +117,11 @@ export default {
       <div class=${I.HomeIndicatorWrapper}>
         <div></div>
       </div>
+    `
+  },
+  addChattingBarTemp:()=>{
+    return `
+      <div class="${I.chattingBarTemp} ></div>
     `
   }
 };
