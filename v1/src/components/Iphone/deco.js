@@ -1,8 +1,0 @@
-export default {
-    addDisplay:() => {
-        
-    },
-    addDisplayContent:() => {
-
-    }
-}
