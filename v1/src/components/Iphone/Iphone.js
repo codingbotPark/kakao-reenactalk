@@ -80,11 +80,18 @@ class Iphone extends HTMLElement {
                   contents:comments,
                   lastVisibleElementIdx:idx-1
                 })
-            } 
+            }   
 
-            if (document.body.clientHeight === Math.round(window.scrollY + window.innerHeight) && !freeViewWorked){ // 만약 끝까지 스크롤을 내렸다면
+            // 만약 끝까지 스크롤을 내렸다면
+            if (document.body.clientHeight === Math.round(window.scrollY + window.innerHeight) && !freeViewWorked){ 
               freeViewWorked = true
               this.freeViewMode()
+              // 스크롤이 생기면 width가 밀리기 때문에 heigth가 늘어난다,
+              // 따라서 reposition을 해준다
+              this.repositionScroll({
+                contents:comments,
+                lastVisibleElementIdx:comments.length-1 // 무조건 마지막 요소
+              })
             }
         })
 
@@ -131,27 +138,12 @@ class Iphone extends HTMLElement {
   /** 변경 후 가장 마지막 opacity가 1인 요소를 인자로 받는다 */
   repositionScroll({contents,lastVisibleElementIdx}){
     if (lastVisibleElementIdx<0) return
-  
+
     const displayHeightWOChattingBar = this.displayElement.offsetHeight - 100
     const contentOffsetBottom = contents[lastVisibleElementIdx].offsetTop + contents[lastVisibleElementIdx].clientHeight
-    console.log("---------1",displayHeightWOChattingBar);
-    console.log("---------",contentOffsetBottom);
-    if (displayHeightWOChattingBar < contentOffsetBottom){
-      console.log("들어옴")
-      this.displayElement.scrollTop = contentOffsetBottom - displayHeightWOChattingBar
-    }
 
-    // display의 clientHeight는 자식 요소들의 clientHeight의 합이다
-    // 따라서 그 요소들의 길이를 +,- 연산으로 스크롤의 위치를 잡는다
-    // 함수가 실행될 때마다 재연산하여 만약 freeViewMode에서 스크롤이 변경되어도 다시 맞춰줄 수 있게 한다
-    console.log("currHeight",contents[lastVisibleElementIdx].clientHeight)
-    console.log("curroffsetTop",contents[lastVisibleElementIdx].offsetTop)
-    console.log("clientHeight",this.displayElement.clientHeight + 190)
-    console.log("offsetHeight",this.displayElement.offsetHeight)
-    console.log("INNERHEIGHT",this.displayElement.scrollHeight) // 90 + 100
-    console.log("SCROLL",this.displayElement.scrollTop)
-    
-
+    // 스크롤 이동
+    this.displayElement.scrollTop = contentOffsetBottom - displayHeightWOChattingBar
   }
 
 }
