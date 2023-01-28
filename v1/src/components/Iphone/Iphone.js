@@ -118,21 +118,11 @@ class Iphone extends HTMLElement {
 
   freeViewMode(){
     // 1. 채팅방에 스크롤이 생기게 한다
-    let display = document.querySelector(`.${I.display}`)
-    display.style.overflowY = "auto"
-   
+    this.displayElement.style.overflowY = "auto"
   }
-
-  /** 
-   * @todo display를 전역으로 해서 사용해보기 
-   * 기억하기론 document객체를 건드는 일은 실시간 성으로 작동된다고 들음
-   * */
   staticViewMode(){
     // 1. 채팅방 스크롤 삭제
-    let display = document.querySelector(`.${I.display}`)
-    display.style.overflowY = "hidden"
-
-    
+    this.displayElement.style.overflowY = "hidden"
   }
 
   /** 변경 후 가장 마지막 opacity가 1인 요소를 인자로 받는다 */
