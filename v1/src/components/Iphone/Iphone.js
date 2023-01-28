@@ -15,8 +15,9 @@ class Iphone extends HTMLElement {
     this.addInnerHtmlToThis(ui.addDynamicIsland())
     this.addInnerHtmlToThis(ui.addHomeIndicator())
 
-    this.addInnerHtmlToThis(ui.addDisplayContent(),`.${I.display}`)
     this.addInnerHtmlToThis(ui.addChattingBar(),`.${I.bezel}`)
+    this.addInnerHtmlToThis(ui.addCustomScrollBar(),`.${I.bezel}`)
+    this.addInnerHtmlToThis(ui.addDisplayContent(),`.${I.display}`)
 
     this.setCustomAttributes()
 

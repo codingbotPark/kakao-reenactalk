@@ -152,6 +152,9 @@ iphone-div {
         position: relative;
         // overflow-y: auto;
         overflow-y: hidden;
+
+        &::-webkit-scrollbar{display: none;}
+
         .contentTemp {
             width: 100%;
             margin-top: 90px;
@@ -304,6 +307,23 @@ iphone-div {
             background-color: black;
             margin-bottom: 7px;
             border-radius: 5px;
+        }
+    }
+}
+
+.customScrollBar{
+    position: absolute;
+    top:103px;
+    right:13px;
+    &>div{
+        width:7px;
+        height:576px;
+        >.scrollGaugeThumb{
+            // height는 js로 변경
+            height:100px;
+            width:4px;
+            border-radius: 5px;
+            background-color: gray;
         }
     }
 }
