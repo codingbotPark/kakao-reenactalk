@@ -49,11 +49,13 @@ export default {
       `
       }</div>`
     )).join("")
+    + 
+    `<div class=${I.chattingBarTemp} ></div>`
     )
   },
   addChattingBar:() => {
     return `
-      <div class=${I.lastContent} >
+      <div class=${I.chattingBar} >
         <div>
           <div class=${I.inputWrapper} >
             <img src=${plusSvg} alt="추가" />
@@ -119,9 +121,4 @@ export default {
       </div>
     `
   },
-  addChattingBarTemp:()=>{
-    return `
-      <div class="${I.chattingBarTemp} ></div>
-    `
-  }
 };

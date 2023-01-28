@@ -6,6 +6,7 @@ import ui from "./ui";
 // innerHtml은 이전 내용을 없앤다
 class Iphone extends HTMLElement {
 
+  displayElement = null
 
   connectedCallback() {
     this.addInnerHtmlToThis(ui.addDisplay())
@@ -17,6 +18,8 @@ class Iphone extends HTMLElement {
     this.addInnerHtmlToThis(ui.addDisplayContent(),`.${I.display}`)
     this.addInnerHtmlToThis(ui.addChattingBar(),`.${I.bezel}`)
 
+    this.setCustomAttributes()
+
     this.controllContent()
   }
 
@@ -24,6 +27,10 @@ class Iphone extends HTMLElement {
     return ['content']
   }
   attributeChangedCallback(){
+  }
+
+  setCustomAttributes(){
+    this.displayElement = document.querySelector(`.${I.display}`)
   }
 
   
@@ -34,7 +41,6 @@ class Iphone extends HTMLElement {
   controllContent(){
     // nodeList가 리턴된다
     let comments = document.querySelectorAll(`.${I.content}`)
-    console.log(comments)
 
     let scroll = window.scrollY
     let windowSide = window.innerHeight
@@ -50,8 +56,6 @@ class Iphone extends HTMLElement {
         scrollToIdx = Math.floor(scroll/windowSide)
 
         comments.forEach((comment,idx) => {
-            // 위의 요소들
-            console.log(scrollToIdx)
             if (idx < scrollToIdx && comment.style.opacity === "0"){
                 directEffect(
                     chat1.content[idx].effectMode,
@@ -60,7 +64,11 @@ class Iphone extends HTMLElement {
                 )
                 freeViewWorked = false
                 this.staticViewMode()
-            } else if (idx >= scrollToIdx && comment.style.opacity === "1") { // 아래의 요소들
+                this.repositionScroll({
+                  contents:comments,
+                  lastVisibleElementIdx:idx
+                })
+            } else if (idx >= scrollToIdx && comment.style.opacity === "1") {
                 directEffect(
                     chat1.content[idx].effectMode,
                     chat1.content[idx].effect.out,
@@ -68,9 +76,13 @@ class Iphone extends HTMLElement {
                 )
                 freeViewWorked = false
                 this.staticViewMode()
+                this.repositionScroll({
+                  contents:comments,
+                  lastVisibleElementIdx:idx-1
+                })
             } 
 
-            if (document.body.clientHeight === window.scrollY + window.innerHeight && !freeViewWorked){ // 만약 끝까지 스크롤을 내렸다면
+            if (document.body.clientHeight === Math.round(window.scrollY + window.innerHeight) && !freeViewWorked){ // 만약 끝까지 스크롤을 내렸다면
               freeViewWorked = true
               this.freeViewMode()
             }
@@ -101,8 +113,7 @@ class Iphone extends HTMLElement {
     // 1. 채팅방에 스크롤이 생기게 한다
     let display = document.querySelector(`.${I.display}`)
     display.style.overflowY = "auto"
-    
-    console.log("hi")
+   
   }
 
   /** 
@@ -113,7 +124,34 @@ class Iphone extends HTMLElement {
     // 1. 채팅방 스크롤 삭제
     let display = document.querySelector(`.${I.display}`)
     display.style.overflowY = "hidden"
+
     
+  }
+
+  /** 변경 후 가장 마지막 opacity가 1인 요소를 인자로 받는다 */
+  repositionScroll({contents,lastVisibleElementIdx}){
+    if (lastVisibleElementIdx<0) return
+  
+    const displayHeightWOChattingBar = this.displayElement.offsetHeight - 100
+    const contentOffsetBottom = contents[lastVisibleElementIdx].offsetTop + contents[lastVisibleElementIdx].clientHeight
+    console.log("---------1",displayHeightWOChattingBar);
+    console.log("---------",contentOffsetBottom);
+    if (displayHeightWOChattingBar < contentOffsetBottom){
+      console.log("들어옴")
+      this.displayElement.scrollTop = contentOffsetBottom - displayHeightWOChattingBar
+    }
+
+    // display의 clientHeight는 자식 요소들의 clientHeight의 합이다
+    // 따라서 그 요소들의 길이를 +,- 연산으로 스크롤의 위치를 잡는다
+    // 함수가 실행될 때마다 재연산하여 만약 freeViewMode에서 스크롤이 변경되어도 다시 맞춰줄 수 있게 한다
+    console.log("currHeight",contents[lastVisibleElementIdx].clientHeight)
+    console.log("curroffsetTop",contents[lastVisibleElementIdx].offsetTop)
+    console.log("clientHeight",this.displayElement.clientHeight + 190)
+    console.log("offsetHeight",this.displayElement.offsetHeight)
+    console.log("INNERHEIGHT",this.displayElement.scrollHeight) // 90 + 100
+    console.log("SCROLL",this.displayElement.scrollTop)
+    
+
   }
 
 }
