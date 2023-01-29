@@ -1,6 +1,7 @@
 import chat1 from "../../model/chat1";
 import I from "./Iphone.style.scss";
 import plusSvg from "../../assets/plusSvg.svg"
+import getMouseSvg from "../../assets/mouseSvg";
 
 export default {
   /** 기본적인 display */
@@ -128,6 +129,16 @@ export default {
           <div class=${I.scrollGaugeThumb}></div>
         </div>
       </div>
+    `
+  },
+  addNoticeScroll:() => {
+    return `
+    <div class=${I.noticeScroll} >
+      <div>
+        ${getMouseSvg(I.scrollDownPath)}
+        <h3>마우스를 스크롤 해주세요</h3>
+      </div>
+    </div>
     `
   }
 };

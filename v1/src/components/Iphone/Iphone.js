@@ -11,8 +11,6 @@ class Iphone extends HTMLElement {
   customScrollIsOpaciting = false
   scrollBarFn = null;
 
-
-
   connectedCallback() {
     this.addInnerHtmlToThis(ui.addDisplay());
     this.addInnerHtmlToThis(ui.addButtons());
@@ -118,7 +116,9 @@ class Iphone extends HTMLElement {
     let scrollToIdx = Math.floor(scroll / windowSide);
     let freeViewWorked = false;
 
+    // --------- dom 초기화
     comments.forEach((comment) => (comment.style.opacity = "0"));
+
 
     window.addEventListener("scroll", () => {
       // 계속 사이즈(스크롤 등?) 을 세팅해준다
@@ -127,6 +127,7 @@ class Iphone extends HTMLElement {
       scrollToIdx = Math.floor(scroll / windowSide);
 
       comments.forEach((comment, idx) => {
+        
         if (idx < scrollToIdx && comment.style.opacity === "0") {
           directEffect(
             chat1.content[idx].effectMode,
@@ -153,12 +154,13 @@ class Iphone extends HTMLElement {
           });
         }
 
+        
         // 만약 끝까지 스크롤을 내렸다면
-        if (
+        else if (
           document.body.clientHeight ===
             Math.round(window.scrollY + window.innerHeight) &&
           !freeViewWorked
-        ) {
+        ) { 
           freeViewWorked = true;
           this.freeViewMode();
           // 스크롤이 생기면 width가 밀리기 때문에 heigth가 늘어난다,
@@ -167,7 +169,9 @@ class Iphone extends HTMLElement {
             contents: comments,
             lastVisibleElementIdx: comments.length - 1, // 무조건 마지막 요소
           });
-        }
+        } 
+
+
       });
     });
   }
