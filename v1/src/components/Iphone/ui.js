@@ -123,7 +123,7 @@ export default {
   },
   addCustomScrollBar:()=>{
     return `
-      <div class=${I.customScrollBar} >
+      <div class=${I.customScrollBarWrapper} >
         <div>
           <div class=${I.scrollGaugeThumb}></div>
         </div>

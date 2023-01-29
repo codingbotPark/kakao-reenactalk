@@ -311,14 +311,18 @@ iphone-div {
     }
 }
 
-.customScrollBar{
+.customScrollBarWrapper{
     position: absolute;
     top:103px;
     right:13px;
     &>div{
         width:7px;
         height:576px;
+        position: relative;
         >.scrollGaugeThumb{
+            cursor: pointer;
+            position: absolute;
+            top: 0px;
             // height는 js로 변경
             height:100px;
             width:4px;
