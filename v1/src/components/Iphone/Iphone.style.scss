@@ -320,6 +320,7 @@ iphone-div {
         height:576px;
         position: relative;
         >.scrollGaugeThumb{
+            opacity: 0;
             cursor: pointer;
             position: absolute;
             top: 0px;

@@ -8,7 +8,10 @@ class Iphone extends HTMLElement {
   displayElement = null;
   scrollBarElement = null;
 
+  customScrollIsOpaciting = false
   scrollBarFn = null;
+
+
 
   connectedCallback() {
     this.addInnerHtmlToThis(ui.addDisplay());
@@ -45,23 +48,41 @@ class Iphone extends HTMLElement {
     )}px`;
 
     // this.displayElement.scrollY : this.displayElement.clientHeight = 스크롤의 전체 크기(576) : scrollBarElement.height
-  }
 
+    this.scrollBarFn = (e) => {
+      this.moveCustomScroll()
+      if (!this.customScrollIsOpaciting){
+        this.customScrollIsOpaciting = true
+        this.scrollBarElement.style.transition = ""
+        this.scrollBarElement.style.opacity = 1
+        setTimeout(() => {
+            this.customScrollIsOpaciting = false
+            this.scrollBarElement.style.transition = "opacity 0.5s"
+            this.scrollBarElement.style.opacity = 0
+        },1500)
+      }
+
+      this.scrollBarElement
+    }
+  }
+  
   freeViewMode() {
     // 1. 채팅방에 스크롤이 생기게 한다
     this.displayElement.style.overflowY = "auto";
     // 2. 눈에보이는 customScrollBar를 생기게 한다
     this.scrollBarElement.style.opacity = "1";
-    // 3. eventListener를 붙여서 customScrollBar를 움직인다
-    this.displayElement.addEventListener("scroll", () => {
-      this.moveCustomScroll()
-    });
+    // 3. customScrollBar의 위치 초기화
+    this.moveCustomScroll()
+    // 4. eventListener를 붙여서 customScrollBar를 움직인다
+    this.displayElement.addEventListener("scroll", this.scrollBarFn);
   }
   staticViewMode() {
     // 1. 채팅방 스크롤 삭제
     this.displayElement.style.overflowY = "hidden";
     // 2. customScrollBar를 보이지 않게 한다
     this.scrollBarElement.style.opacity = "0";
+    // 3. removeEventListener
+    const result = this.displayElement.removeEventListener("scroll", this.scrollBarFn);
   }
 
   /** 변경 후 가장 마지막 opacity가 1인 요소를 인자로 받는다 */
@@ -78,28 +99,16 @@ class Iphone extends HTMLElement {
       contentOffsetBottom - displayHeightWOChattingBar;
   }
   moveCustomScroll(){
-    // console.log(this.displayElement.scrollTop + this.displayElement.clientHeight) 
-    // console.log("allDivScroll",this.displayElement.scrollHeight) 
-
     const customSCrollBarWrapper = document.querySelector(`.${I.customScrollBarWrapper}`);
     const DSEMaxScrollTop = this.displayElement.scrollHeight - this.displayElement.clientHeight
     const CSBMaxScrollTop = customSCrollBarWrapper.clientHeight - this.scrollBarElement.offsetHeight  
 
-    console.log("DSEMaxScrollTop",DSEMaxScrollTop)
-    console.log("CSBMaxScrollTop",CSBMaxScrollTop)
-
-    console.log(`${Math.round((this.displayElement.scrollTop * CSBMaxScrollTop) / DSEMaxScrollTop)}px`)
     this.scrollBarElement.style.top = `${Math.round((this.displayElement.scrollTop * CSBMaxScrollTop) / DSEMaxScrollTop)}px`
 
     // DE의 최대 scrollTop : 현재 스크롤 Top =
     // CS의 전체 세로 - CS의 세로 : CS의 position top
   }
 
-
-  /**
-   * @todo 마지막 한 칸은 스크롤 auto로 해서 볼 수 있게
-   * @todo 스크롤을 그냥 직접 작은 사이즈로 만든다
-   */
   controllContent() {
     // nodeList가 리턴된다
     let comments = document.querySelectorAll(`.${I.content}`);
