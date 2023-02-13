@@ -9,6 +9,9 @@ module.exports = merge(common,{
         static:{
             directory:path.resolve(__dirname,'dist'),
         },
-        port:8080
+        port:8080,
+        historyApiFallback: {
+            index: 'index.html'
+        }
     }
 })
