@@ -6,12 +6,13 @@ class IphonePage extends HTMLElement{
     connectedCallback(){
 
         let WrapperDiv = document.createElement('div')
-        this.appendChild(WrapperDiv)
         WrapperDiv.style.height = ((chat1.content.length+2) * 100)+"vh"
-        let iphone = WrapperDiv.appendChild(Iphone)
+        this.append(WrapperDiv)
+        // 중복 에러 때문에 innerHtml으로 처리했다
+        WrapperDiv.innerHTML = '<iphone-div></iphone-div>'
         
     }
 }
 
 customElements.define('iphone-page',IphonePage)
-export default document.createElement('iphone-page')
+export default '<iphone-page></iphone-page>'
