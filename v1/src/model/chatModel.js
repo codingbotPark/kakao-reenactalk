@@ -1,6 +1,6 @@
 export default {
     displayColor:"#BACEE0",
-    title:"영어화상 10시반에 모둠학습실로 모이래요",
+    title:"카카오톡 재연 ONLINE",
     content:[
         {
             profile:"https://avatars.githubusercontent.com/u/85085375?v=4",

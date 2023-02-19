@@ -1,16 +1,15 @@
 import Iphone from "../../components/Iphone/Iphone";
-import chat1 from "../../model/chat1";
+import chatModel from "../../model/chatModel";
 import "./IphonePage.style.scss"
 
 class IphonePage extends HTMLElement{
     connectedCallback(){
 
         let WrapperDiv = document.createElement('div')
-        WrapperDiv.style.height = ((chat1.content.length+2) * 100)+"vh"
+        WrapperDiv.style.height = ((chatModel.content.length+2) * 100)+"vh"
         this.append(WrapperDiv)
         // 중복 에러 때문에 innerHtml으로 처리했다
-        WrapperDiv.innerHTML = '<iphone-div></iphone-div>'
-        
+        WrapperDiv.innerHTML = `<iphone-div chatModel='${JSON.stringify(chatModel)}' ></iphone-div>`
     }
 }
 

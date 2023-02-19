@@ -1,7 +1,6 @@
 // import "./style/_variable.scss"
 import I from "./index.style.scss"
 import App from "./App"
-import chat1 from "./model/chat1"
 
 const body = document.getElementsByTagName('body')[0]
 

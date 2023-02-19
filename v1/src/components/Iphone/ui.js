@@ -1,4 +1,3 @@
-import chat1 from "../../model/chat1";
 import I from "./Iphone.style.scss";
 import plusSvg from "../../assets/plusSvg.svg"
 import getMouseSvg from "../../assets/mouseSvg";
@@ -6,26 +5,26 @@ import getMouseSvg from "../../assets/mouseSvg";
 export default {
   /** 기본적인 display */
   // header는 휴대폰 기준으로 fixed 되어야 하기 때문에 bezel에 추가해줬다
-  addDisplay: () => {
+  addDisplay: (chatModel) => {
     return `
         <div class=${I.bezel}>
             <header 
               class=${I.contentHeader} 
-              style="background-color:${chat1.displayColor}"
+              style="background-color:${chatModel.displayColor}"
             >
               <div></div>
           </header>
         <div
             class=${I.display}
-            style="background-color:${chat1.displayColor}"
+            style="background-color:${chatModel.displayColor}"
         >
           <div class=${I.contentTemp} ></div>
           </div>
         </div> 
         `;
   },
-  addDisplayContent: () => {
-    return (chat1.content.map((cont,idx) => (
+  addDisplayContent: (chatModel) => {
+    return (chatModel.content.map((cont,idx) => (
       `<div
         class="${cont.user ? I.otherContent : I.myContent} ${I.content} ${I[cont.effectMode]}"
       >${cont.profile ? 

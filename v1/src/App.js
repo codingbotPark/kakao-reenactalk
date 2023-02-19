@@ -1,6 +1,5 @@
 import Iphone from "./components/Iphone/Iphone"
 
-import chat1 from "./model/chat1"
 import IphonePage from "./page/IphonePage/IphonePage"
 import routes from "./routes"
 

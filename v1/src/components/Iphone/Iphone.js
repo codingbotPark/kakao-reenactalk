@@ -1,5 +1,4 @@
 import I from "./Iphone.style.scss";
-import chat1 from "../../model/chat1";
 import directEffect from "../../logic/effect/directEffect";
 import ui from "./ui";
 
@@ -11,8 +10,12 @@ class Iphone extends HTMLElement {
   customScrollIsOpaciting = false;
   scrollBarFn = null;
 
+  props = this.parseProps()
+
   connectedCallback() {
-    this.addInnerHtmlToThis(ui.addDisplay());
+    const chatModel = this.props[0]
+
+    this.addInnerHtmlToThis(ui.addDisplay(chatModel));
     this.addInnerHtmlToThis(ui.addButtons());
     this.addInnerHtmlToThis(ui.addMarks());
     this.addInnerHtmlToThis(ui.addDynamicIsland());
@@ -29,28 +32,28 @@ class Iphone extends HTMLElement {
      */
     this.setCustomAttributes();
     
-    this.renderContent();
+    this.renderContent(chatModel);
 
   }
   
   // 수정에서 활용하기 위해서 content를 따로 빼줬다
   static get observedAttributes() {
-    return ["content"];
+    return ["chatModel"];
   }
-  attributeChangedCallback() {
-    this.renderContent();
+  attributeChangedCallback(chatModel) {
+    this.renderContent(chatModel);
   }
 
-  renderContent() {
+  renderContent(chatModel) {
     // 이미 있는 콘텐츠 삭제
     let contents = document.querySelectorAll(`.${I.content}`);
     contents.forEach((content) => {
       content.remove()
     })
 
-    this.addInnerHtmlToThis(ui.addDisplayContent(), `.${I.display}`);
-    this.setSCrollBar();
-    this.controllContent();
+    this.addInnerHtmlToThis(ui.addDisplayContent(chatModel), `.${I.display}`);
+    this.setSCrollBar(chatModel);
+    this.controllContent(chatModel);
   }
 
   setCustomAttributes() {
@@ -138,7 +141,7 @@ class Iphone extends HTMLElement {
     // CS의 전체 세로 - CS의 세로 : CS의 position top
   }
 
-  controllContent() {
+  controllContent(chatModel) {
     // nodeList가 리턴된다
     let comments = document.querySelectorAll(`.${I.content}`);
 
@@ -159,8 +162,8 @@ class Iphone extends HTMLElement {
       comments.forEach((comment, idx) => {
         if (idx < scrollToIdx && comment.style.opacity === "0") {
           directEffect(
-            chat1.content[idx].effectMode,
-            chat1.content[idx].effect.in,
+            chatModel.content[idx].effectMode,
+            chatModel.content[idx].effect.in,
             comment
           );
           freeViewWorked = false;
@@ -171,8 +174,8 @@ class Iphone extends HTMLElement {
           });
         } else if (idx >= scrollToIdx && comment.style.opacity === "1") {
           directEffect(
-            chat1.content[idx].effectMode,
-            chat1.content[idx].effect.out,
+            chatModel.content[idx].effectMode,
+            chatModel.content[idx].effect.out,
             comment
           );
           freeViewWorked = false;
@@ -220,6 +223,13 @@ class Iphone extends HTMLElement {
 
   getNumbersFromString(str) {    const regex = /[^0-9]/g;
     return Number(str.replace(regex, ""));
+  }
+
+  parseProps(){
+    return this.getAttributeNames().map((propsName) => 
+    JSON.parse(this.getAttribute(propsName))
+    )
+    
   }
 }
 
