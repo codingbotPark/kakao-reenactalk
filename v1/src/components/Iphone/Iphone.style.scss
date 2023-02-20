@@ -164,12 +164,40 @@ iphone-div {
         height: 90px;
         width: calc(100% - 26px);
         // background-color:var(--displayColor);
-        opacity: 0.8;
+        opacity: 0.9;
         position: absolute;
         left: 13px;
         top: 13px;
         border-radius: 50px 50px 0px 0px;
         z-index: 2;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        .contentHeaderElements{
+            width:100%;
+            margin-bottom: 13px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            >*{margin:0px;}
+            >div{width:55px;}
+            .contentHeaderLeft{
+                margin-left:15px;
+                >img{
+                    height:21px;
+                    cursor:pointer;
+                }
+            }
+            .contentHeaderRight{
+                margin-right:15px;
+                display:flex;
+                justify-content: space-between;
+                >img{
+                    height:23px;
+                    cursor:pointer;
+                }
+            }
+        }
     }
 
 

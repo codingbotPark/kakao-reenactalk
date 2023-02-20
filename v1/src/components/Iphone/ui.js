@@ -1,6 +1,9 @@
 import I from "./Iphone.style.scss";
-import plusSvg from "../../assets/plusSvg.svg"
-import getMouseSvg from "../../assets/mouseSvg";
+import plusSvg from "../../assets/Iphone/plusSvg.svg"
+import getMouseSvg from "../../assets/Iphone/mouseSvg";
+import leftArrowSvg from "../../assets/Iphone/leftArrowSvg.svg"
+import searchSvg from "../../assets/Iphone/searchSvg.svg"
+import menuSvg from "../../assets/Iphone/menuSvg.svg"
 
 export default {
   /** 기본적인 display */
@@ -12,7 +15,16 @@ export default {
               class=${I.contentHeader} 
               style="background-color:${chatModel.displayColor}"
             >
-              <div></div>
+              <div class=${I.contentHeaderElements}>
+                <div class=${I.contentHeaderLeft} >
+                  <img src=${leftArrowSvg} />
+                </div>
+                <h4>${chatModel.title}</h4>
+                <div class=${I.contentHeaderRight} >
+                  <img src=${searchSvg} />
+                  <img src=${menuSvg} />
+                </div>
+              </div>
           </header>
         <div
             class=${I.display}
