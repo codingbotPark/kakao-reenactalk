@@ -1,6 +1,7 @@
 import Iphone from "./components/Iphone/Iphone"
 
 import IphonePage from "./page/IphonePage/IphonePage"
+import pagingEffect from "./pagingEffect"
 import routes from "./routes"
 
 class App extends HTMLElement {
@@ -13,7 +14,7 @@ class App extends HTMLElement {
 
     customHistoryChangeHandler(){
         window.addEventListener('customHistoryChange',({detail}) => {
-            const {pathname,doReplace} = detail
+            const {pathname,effect,doReplace} = detail
 
             // replace가 필요하거나, 현재와 같다면 pushState대신
             // replaceState를 해줘서 history를 관리해준다
@@ -22,7 +23,7 @@ class App extends HTMLElement {
             } else {
                 window.history.pushState({}, pathname, window.location.origin+pathname);
             }
-            this.route(pathname)
+            this.route(pathname,effect)
         })
     }
     popStateHandler(){
@@ -31,8 +32,12 @@ class App extends HTMLElement {
         })
     }
 
-    route(path = window.location.pathname){
-        this.innerHTML = routes[path]
+    route(path = window.location.pathname,effect){
+        if (effect){
+            pagingEffect(this,effect)
+        } else {
+            this.innerHTML = routes[path]
+        }
     }
 }
 

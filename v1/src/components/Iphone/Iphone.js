@@ -33,6 +33,7 @@ class Iphone extends HTMLElement {
     this.setCustomAttributes();
     
     this.renderContent(chatModel);
+    
 
   }
   

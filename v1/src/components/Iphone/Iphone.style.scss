@@ -187,7 +187,7 @@ iphone-div {
                     height:21px;
                     cursor:pointer;
                 }
-            }
+            } 
             .contentHeaderRight{
                 margin-right:15px;
                 display:flex;
@@ -344,8 +344,17 @@ iphone-div {
                 aspect-ratio: 1/1;
                 border-radius: 50%;
                 background-color: rgb(26, 24, 24);
+                display:flex;
+                justify-content: center;
+                align-items: center;
 
-                .selfCameraLens {}
+                .selfCameraLens {
+                    width:50%;
+                    height:50%;
+                    border-radius: 50%;
+                    // background: linear-gradient(rgb(41,41,41) 19%,rgb(92,92,92) 53%,rgb(0,0,0) 101%)
+                    background: linear-gradient(rgb(0,0,0) 24%,rgb(57,45,45) 42%,rgb(42,60,50) 50%,rgb(57,45,45) 58%,rgb(0,0,0) 77%);
+                }
             }
         }
     }
