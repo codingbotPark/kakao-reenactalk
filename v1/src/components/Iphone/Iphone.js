@@ -30,7 +30,6 @@ class Iphone extends HTMLElement{
     this.renderContent(chatModel);
     
     // clickHandler는 일단 현재 static한 요소만 handler가 있기 때문에 놔둔다
-    console.log(clickEffects)
     this.useClickEffects(clickEffects)
   }
 
@@ -240,7 +239,6 @@ class Iphone extends HTMLElement{
   // ----evnet
 
   useClickEffects(clickEffects){
-    console.log(clickEffects)
     clickEffects.forEach((clickEffect) => {
       this.addEventToDOM({
         eventKind:'click',

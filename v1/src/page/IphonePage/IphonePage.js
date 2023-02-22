@@ -4,12 +4,13 @@ import "./IphonePage.style.scss"
 
 class IphonePage extends HTMLElement{
     connectedCallback(){
+        this.innerHTML = `
+            <div style="height:${(chatModel.content.length+2) * 100}vh; background-color:${chatModel.backgrondColor};" >
+                <iphone-div chatModel='${JSON.stringify(chatModel)}' ></iphone-div>
+            </div>
+        `
 
-        let WrapperDiv = document.createElement('div')
-        WrapperDiv.style.height = ((chatModel.content.length+2) * 100)+"vh"
-        this.append(WrapperDiv)
-        // 중복 에러 때문에 innerHtml으로 처리했다
-        WrapperDiv.innerHTML = `<iphone-div chatModel='${JSON.stringify(chatModel)}' ></iphone-div>`
+        console.log(chatModel.backgrondColor)
     }
 }
 

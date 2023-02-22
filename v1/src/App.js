@@ -34,7 +34,13 @@ class App extends HTMLElement {
 
     route(path = window.location.pathname,effect){
         if (effect){
-            pagingEffect(this,effect)
+            const doPagingEffect = pagingEffect.doPagingEffect;
+            const boundedDoPagingEffect = doPagingEffect.bind(this)
+            boundedDoPagingEffect(effect,path)
+            
+            // const doPagingEffect = pagingEffect.doPagingEffect;
+            // const boundedDoPagingEffect = doPagingEffect.bind(this)
+            // boundedDoPagingEffect(effect,path)
         } else {
             this.innerHTML = routes[path]
         }

@@ -1,6 +1,6 @@
 import routes from "../routes";
 
-const useNavigate = (pathname,doReplace=false,effect=undefined) => {
+const useNavigate = (pathname,effect=undefined,doReplace=false) => {
   const customHistoryChangeEvnet = new CustomEvent("customHistoryChange",{
     detail:{
         pathname,

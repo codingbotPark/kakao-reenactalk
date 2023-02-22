@@ -5,7 +5,7 @@ const clickEffects= [
   {
     selector: `.${I.leftArrowImg}`,
     FN:() => {
-      useNavigate()
+      useNavigate('/','slideToRight',false)
     },
   },
 ];

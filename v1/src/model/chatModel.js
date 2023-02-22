@@ -1,4 +1,5 @@
 export default {
+    backgrondColor:"#203e6b",
     displayColor:"#BACEE0",
     title:"카카오톡 재연 ONLINE",
     content:[
