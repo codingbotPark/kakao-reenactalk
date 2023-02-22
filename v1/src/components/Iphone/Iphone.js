@@ -1,9 +1,10 @@
 import I from "./Iphone.style.scss";
 import directEffect from "../../logic/effect/directEffect";
 import ui from "./ui";
+import clickEffects from "./clickEffects";
 
 // innerHtml은 이전 내용을 없앤다
-class Iphone extends HTMLElement {
+class Iphone extends HTMLElement{
   displayElement = null;
   scrollBarElement = null;
 
@@ -24,18 +25,15 @@ class Iphone extends HTMLElement {
     this.addInnerHtmlToThis(ui.addChattingBar(), `.${I.bezel}`);
     this.addInnerHtmlToThis(ui.addCustomScrollBar(), `.${I.bezel}`);
 
-    /**
-     * @todo 전역으로 사용해서 하려고 하니깐 render순서가 생긴다
-     * 이걸 이대로 할지, 리팩토링 하기
-     * 만약 이 방법이 마음에 안 든다면
-     * 랜더하는 곳 모두 요소를 들고오게 한다
-     */
     this.setCustomAttributes();
     
     this.renderContent(chatModel);
     
-
+    // clickHandler는 일단 현재 static한 요소만 handler가 있기 때문에 놔둔다
+    console.log(clickEffects)
+    this.useClickEffects(clickEffects)
   }
+
   
   // 수정에서 활용하기 위해서 content를 따로 빼줬다
   static get observedAttributes() {
@@ -206,6 +204,8 @@ class Iphone extends HTMLElement {
     });
   }
 
+  // ----------utils
+
   /** targetDom은 있으면 targetDom으로 간다 */
   addInnerHtmlToThis(html, querySelectValue) {
     if (querySelectValue) {
@@ -230,8 +230,27 @@ class Iphone extends HTMLElement {
     return this.getAttributeNames().map((propsName) => 
     JSON.parse(this.getAttribute(propsName))
     )
-    
   }
+
+  addEventToDOM({eventKind,selector,FN}){
+    const dom = document.querySelector(selector);
+    dom.addEventListener(eventKind, FN);
+  }
+
+  // ----evnet
+
+  useClickEffects(clickEffects){
+    console.log(clickEffects)
+    clickEffects.forEach((clickEffect) => {
+      this.addEventToDOM({
+        eventKind:'click',
+        selector:clickEffect.selector,
+        FN:clickEffect.FN
+      });
+    });
+  }
+
+
 }
 
 customElements.define("iphone-div", Iphone);

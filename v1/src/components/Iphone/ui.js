@@ -17,12 +17,12 @@ export default {
             >
               <div class=${I.contentHeaderElements}>
                 <div class=${I.contentHeaderLeft} >
-                  <img src=${leftArrowSvg} />
+                  <img src=${leftArrowSvg} class=${I.leftArrowImg} />
                 </div>
                 <h4>${chatModel.title}</h4>
                 <div class=${I.contentHeaderRight} >
-                  <img src=${searchSvg} />
-                  <img src=${menuSvg} />
+                  <img src=${searchSvg} class=${I.searchImg} />
+                  <img src=${menuSvg} class=${I.menuImg} />
                 </div>
               </div>
           </header>

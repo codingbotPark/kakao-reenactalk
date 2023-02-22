@@ -193,10 +193,12 @@ iphone-div {
                 display:flex;
                 justify-content: space-between;
                 >img{
-                    height:23px;
                     cursor:pointer;
                 }
             }
+            .leftArrowImg{height:21px;}
+            .searchImg{height:23px;}
+            .menuImg{height:23px;}
         }
     }
 
