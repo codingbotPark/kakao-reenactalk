@@ -25,7 +25,7 @@ export default {
 
         },
         {
-            text:`어쩌라고요`,
+            text:`오우 그렇군요`,
             effectMode:"static",
             effect:{
                 in:"fadeIn",

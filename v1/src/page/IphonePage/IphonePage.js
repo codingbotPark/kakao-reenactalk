@@ -9,8 +9,6 @@ class IphonePage extends HTMLElement{
                 <iphone-div chatModel='${JSON.stringify(chatModel)}' ></iphone-div>
             </div>
         `
-
-        console.log(chatModel.backgrondColor)
     }
 }
 

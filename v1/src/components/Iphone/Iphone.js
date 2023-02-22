@@ -14,7 +14,7 @@ class Iphone extends HTMLElement{
   props = this.parseProps()
 
   connectedCallback() {
-    const chatModel = this.props[0]
+    const [chatModel,responsiveness] = this.props
 
     this.addInnerHtmlToThis(ui.addDisplay(chatModel));
     this.addInnerHtmlToThis(ui.addButtons());
@@ -27,7 +27,7 @@ class Iphone extends HTMLElement{
 
     this.setCustomAttributes();
     
-    this.renderContent(chatModel);
+    this.renderContent(chatModel,responsiveness);
     
     // clickHandler는 일단 현재 static한 요소만 handler가 있기 때문에 놔둔다
     this.useClickEffects(clickEffects)
@@ -38,11 +38,11 @@ class Iphone extends HTMLElement{
   static get observedAttributes() {
     return ["chatModel"];
   }
-  attributeChangedCallback(chatModel) {
-    this.renderContent(chatModel);
+  attributeChangedCallback(chatModel,responsiveness=1) {
+    this.renderContent(chatModel,responsiveness);
   }
 
-  renderContent(chatModel) {
+  renderContent(chatModel,responsiveness=1) {
     // 이미 있는 콘텐츠 삭제
     let contents = document.querySelectorAll(`.${I.content}`);
     contents.forEach((content) => {
@@ -51,7 +51,7 @@ class Iphone extends HTMLElement{
 
     this.addInnerHtmlToThis(ui.addDisplayContent(chatModel), `.${I.display}`);
     this.setSCrollBar(chatModel);
-    this.controllContent(chatModel);
+    this.controllContent(chatModel,responsiveness);
   }
 
   setCustomAttributes() {
@@ -139,11 +139,12 @@ class Iphone extends HTMLElement{
     // CS의 전체 세로 - CS의 세로 : CS의 position top
   }
 
-  controllContent(chatModel) {
+  controllContent(chatModel,responsiveness) {
+    console.log(responsiveness) 
     // nodeList가 리턴된다
     let comments = document.querySelectorAll(`.${I.content}`);
 
-    let scroll = window.scrollY;
+    let scroll = window.scrollY * responsiveness;
     let windowSide = window.innerHeight;
     let scrollToIdx = Math.floor(scroll / windowSide);
     let freeViewWorked = false;
@@ -153,7 +154,7 @@ class Iphone extends HTMLElement{
 
     window.addEventListener("scroll", () => {
       // 계속 사이즈(스크롤 등?) 을 세팅해준다
-      scroll = window.scrollY;
+      scroll = window.scrollY * responsiveness;
       windowSide = window.innerHeight;
       scrollToIdx = Math.floor(scroll / windowSide);
 
@@ -186,10 +187,11 @@ class Iphone extends HTMLElement{
 
         // 만약 끝까지 스크롤을 내렸다면
         else if (
-          document.body.clientHeight ===
-            Math.round(window.scrollY + window.innerHeight) &&
+          Math.round((chatModel.content.length+2) * window.innerHeight / responsiveness)  <=
+            Math.round(window.scrollY + (window.innerHeight / responsiveness)) &&
           !freeViewWorked
-        ) {
+        ) 
+        {
           freeViewWorked = true;
           this.freeViewMode();
           // 스크롤이 생기면 width가 밀리기 때문에 heigth가 늘어난다,
@@ -199,6 +201,12 @@ class Iphone extends HTMLElement{
             lastVisibleElementIdx: comments.length - 1, // 무조건 마지막 요소
           });
         }
+
+        console.log(Math.round((chatModel.content.length+2) * window.innerHeight / responsiveness))
+        console.log(Math.round(window.scrollY + window.innerHeight))
+
+        console.log(window.scrollY)
+
       });
     });
   }
