@@ -10,18 +10,9 @@ class HomePage extends HTMLElement{
 
         WrapperDiv.innerHTML = `
             <div class=${H.Wrapper} >
-                <button class=${H.Button} >talk</button>
+                <
             </div>
         `
-
-        let button = document.querySelector(`.${H.Button}`)
-        button.addEventListener("click",() => {
-            useNavigate('/talk')
-        })
-
-
-        // let iphone = WrapperDiv.appendChild(Home)
-        
     }
 }
 

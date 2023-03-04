@@ -2,9 +2,10 @@ import I from "./Iphone.style.scss";
 import directEffect from "../../logic/effect/directEffect";
 import ui from "./ui";
 import clickEffects from "./clickEffects";
+import customElement from "../../classes/CustomElementClass";
 
 // innerHtml은 이전 내용을 없앤다
-class Iphone extends HTMLElement{
+class Iphone extends customElement{
   displayElement = null;
   scrollBarElement = null;
 
@@ -213,36 +214,13 @@ class Iphone extends HTMLElement{
 
   // ----------utils
 
-  /** targetDom은 있으면 targetDom으로 간다 */
-  addInnerHtmlToThis(html, querySelectValue) {
-    if (querySelectValue) {
-      let targetDom = document.querySelector(querySelectValue);
-      targetDom.innerHTML = `
-              ${targetDom.innerHTML}
-              ${html}
-          `;
-    } else {
-      this.innerHTML = `
-          ${this.innerHTML}
-          ${html}
-      `;
-    }
-  }
+
 
   getNumbersFromString(str) {    const regex = /[^0-9]/g;
     return Number(str.replace(regex, ""));
   }
 
-  parseProps(){
-    return this.getAttributeNames().map((propsName) => 
-    JSON.parse(this.getAttribute(propsName))
-    )
-  }
 
-  addEventToDOM({eventKind,selector,FN}){
-    const dom = document.querySelector(selector);
-    dom.addEventListener(eventKind, FN);
-  }
 
   // ----evnet
 
