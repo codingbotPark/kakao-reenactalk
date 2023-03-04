@@ -6,7 +6,9 @@ class IphonePage extends HTMLElement{
     connectedCallback(){
         this.innerHTML = `
             <div style="height:${(chatModel.content.length+2) * 100}vh; background-color:${chatModel.backgrondColor};" >
-                <iphone-div chatModel='${JSON.stringify(chatModel)}' ></iphone-div>
+                <div>
+                    <iphone-div chatModel='${JSON.stringify(chatModel)}' ></iphone-div>
+                </div>
             </div>
         `
     }

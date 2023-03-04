@@ -4,5 +4,9 @@ iphone-page{
         height:100vh;
         display: flex;
         justify-content: center;
+        &>div{
+            margin:60px;
+            position: fixed;
+        }
     }
 }

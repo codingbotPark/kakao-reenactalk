@@ -25,14 +25,12 @@
 
 iphone-div {
 
-    margin: 60px;
     display: block;
     width: 400px;
     aspect-ratio: 1/2;
     background-color: silver;
     border-radius: 65px;
-    position: fixed;
-
+    position: relative;
     padding: 3px;
     border: 1px solid black;
     box-sizing: border-box;

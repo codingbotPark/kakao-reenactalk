@@ -13,9 +13,13 @@ class Iphone extends customElement{
   scrollBarFn = null;
 
   props = this.parseProps()
+  clickAble = true
 
   connectedCallback() {
-    const [chatModel,responsiveness] = this.props
+    const [chatModel,responsiveness,clickAble] = this.props
+    // props로 들어온 clickAble가 특정 값이 있을 때 적용,
+    // 없을 땐 기본값인 true로 지정
+    this.clickAble = clickAble?? true
 
     this.addInnerHtmlToThis(ui.addDisplay(chatModel));
     this.addInnerHtmlToThis(ui.addButtons());
@@ -31,7 +35,10 @@ class Iphone extends customElement{
     this.renderContent(chatModel,responsiveness);
     
     // clickHandler는 일단 현재 static한 요소만 handler가 있기 때문에 놔둔다
-    this.useClickEffects(clickEffects)
+    if (this.clickAble){
+      console.log("클릭이벤트 허용")
+      this.useClickEffects(clickEffects)
+    }
   }
 
   
@@ -141,7 +148,6 @@ class Iphone extends customElement{
   }
 
   controllContent(chatModel,responsiveness) {
-    console.log(responsiveness) 
     // nodeList가 리턴된다
     let comments = document.querySelectorAll(`.${I.content}`);
 

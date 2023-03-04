@@ -10,7 +10,7 @@ export default {
                 this.children[0].style.cssText = `
                     width:100vw;
                     z-index:1000;
-                    box-shadow:-10px 5px 1px rgba(0,0,0,0.5);
+                    box-shadow:-10px 5px 100px rgba(0,0,0,0.5);
                     position:fixed;
                     top:0px;
                     left:0px;
