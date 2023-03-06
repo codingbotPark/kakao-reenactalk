@@ -51,25 +51,23 @@ class Iphone extends customElement{
 
   renderContent(chatModel,responsiveness=1) {
     this.removeContentElement()
-    const displayContent = ui.addDisplayContent(chatModel)
 
-    this.addInnerHtmlToThis(displayContent, `.${I.display}`);
-    this.setSCrollBar(chatModel);
+    this.addInnerHtmlToThis(ui.addDisplayContent(chatModel), `.${I.display}`);
+    this.setScrollBar(chatModel);
     this.controllContent(chatModel,responsiveness);
   }
   removeContentElement(){
-    let contents = document.querySelectorAll(`.${I.content}`);
-    console.log(contents)
-    contents.forEach((content) => {
+    // content 삭제
+    const display = document.querySelector(`.${I.display}`);
+    [...display.children].forEach((content) => {
       content.remove()
     })
-    return
   }
 
   setCustomAttributes() {
   }
   
-  setSCrollBar() {
+  setScrollBar() {
     const displayElement = document.querySelector(`.${I.display}`);
     const scrollBarElement = document.querySelector(`.${I.scrollGaugeThumb}`);
 

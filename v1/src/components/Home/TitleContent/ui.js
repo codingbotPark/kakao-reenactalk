@@ -14,26 +14,25 @@ export default {
         `
     },
     addPhones:() => {
-        console.log(window.innerWidth)
-
-        const phoneArr = [...Array(window.innerWidth / 400)].map((i,idx) => {
-            return `<div class=${T.PhonesWrapper} >
-            <iphone-div 
+        const phoneArr = [...Array(Math.floor(window.innerWidth / 400))].map((i,idx) => {
+            const orderLine = idx / (window.innerWidth / 400)
+            // console.log(orderLine)
+            console.log(Math.floor(Math.random() * 20) + 20)
+            // style="transform:rotate()"
+            return `
+            <iphone-div
             chatModel='${JSON.stringify(mainPageChatModel[idx])}' 
-            responsiveness='20'
+            responsiveness='${Math.floor(Math.random() * 20) + 20}'
             clickAble='false'
             ></iphone-div>
-            </div>`
+            `
         })
-
-        const str = `<div class=${T.PhonesWrapper} >
-        <iphone-div 
-        chatModel='${JSON.stringify(mainPageChatModel[0])}' 
-        responsiveness='20'
-        clickAble='false'
-        ></iphone-div>
-        </div>`
-        return 
+        console.log(phoneArr)
+        return `
+        <div class=${T.PhonesWrapper} >
+            ${phoneArr.join("")}
+        </div>
+        `
             
     }
 }

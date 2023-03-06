@@ -13,7 +13,7 @@ export default {
         <div class=${I.bezel}>
             <header 
               class=${I.contentHeader} 
-              style="background-color:${chatModel.displayColor}"
+              style="background-color:${chatModel.displayColor};"
             >
               <div class=${I.contentHeaderElements}>
                 <div class=${I.contentHeaderLeft} >
@@ -30,13 +30,14 @@ export default {
             class=${I.display}
             style="background-color:${chatModel.displayColor}"
         >
-          <div class=${I.contentTemp} ></div>
-          </div>
+          
+        </div>
         </div> 
         `;
   },
   addDisplayContent: (chatModel) => {
-    return (chatModel.content.map((cont,idx) => (
+    return `<div class=${I.contentTemp} ></div>` + 
+    (chatModel.content.map((cont,idx) => (
       `<div
         class="${cont.user ? I.otherContent : I.myContent} ${I.content} ${I[cont.effectMode]}"
       >${cont.profile ? 

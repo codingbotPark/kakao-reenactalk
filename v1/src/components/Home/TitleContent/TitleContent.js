@@ -8,7 +8,7 @@ class TitleContent extends customElement{
         this.addInnerHtmlToThis(ui.addWrapper());
         this.addInnerHtmlToThis(ui.addPhones(),`.${T.Wrapper}`)
         window.addEventListener("resize",()=>{
-            this.removePhones()
+            this.removePhones() 
             this.addInnerHtmlToThis(ui.addPhones(),`.${T.Wrapper}`)
         })
     }
