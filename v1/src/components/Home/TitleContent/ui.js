@@ -14,13 +14,26 @@ export default {
         `
     },
     addPhones:() => {
-        return `
-            <div class=${T.PhonesWrapper} >
-                <iphone-div 
-                chatModel='${JSON.stringify(mainPageChatModel[0])}' 
-                responsiveness='20'
-                />
-            </div>
-        `
+        console.log(window.innerWidth)
+
+        const phoneArr = [...Array(window.innerWidth / 400)].map((i,idx) => {
+            return `<div class=${T.PhonesWrapper} >
+            <iphone-div 
+            chatModel='${JSON.stringify(mainPageChatModel[idx])}' 
+            responsiveness='20'
+            clickAble='false'
+            ></iphone-div>
+            </div>`
+        })
+
+        const str = `<div class=${T.PhonesWrapper} >
+        <iphone-div 
+        chatModel='${JSON.stringify(mainPageChatModel[0])}' 
+        responsiveness='20'
+        clickAble='false'
+        ></iphone-div>
+        </div>`
+        return 
+            
     }
 }

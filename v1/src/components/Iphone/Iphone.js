@@ -6,8 +6,8 @@ import customElement from "../../classes/CustomElementClass";
 
 // innerHtml은 이전 내용을 없앤다
 class Iphone extends customElement{
-  displayElement = null;
-  scrollBarElement = null;
+  // displayElement = null;
+  // scrollBarElement = null;
 
   customScrollIsOpaciting = false;
   scrollBarFn = null;
@@ -30,13 +30,13 @@ class Iphone extends customElement{
     this.addInnerHtmlToThis(ui.addChattingBar(), `.${I.bezel}`);
     this.addInnerHtmlToThis(ui.addCustomScrollBar(), `.${I.bezel}`);
 
+    this.renderContent(chatModel,responsiveness);
+    
     this.setCustomAttributes();
     
-    this.renderContent(chatModel,responsiveness);
     
     // clickHandler는 일단 현재 static한 요소만 handler가 있기 때문에 놔둔다
     if (this.clickAble){
-      console.log("클릭이벤트 허용")
       this.useClickEffects(clickEffects)
     }
   }
@@ -47,34 +47,40 @@ class Iphone extends customElement{
     return ["chatModel"];
   }
   attributeChangedCallback(chatModel,responsiveness=1) {
-    this.renderContent(chatModel,responsiveness);
   }
 
   renderContent(chatModel,responsiveness=1) {
-    // 이미 있는 콘텐츠 삭제
-    let contents = document.querySelectorAll(`.${I.content}`);
-    contents.forEach((content) => {
-      content.remove()
-    })
+    this.removeContentElement()
+    const displayContent = ui.addDisplayContent(chatModel)
 
-    this.addInnerHtmlToThis(ui.addDisplayContent(chatModel), `.${I.display}`);
+    this.addInnerHtmlToThis(displayContent, `.${I.display}`);
     this.setSCrollBar(chatModel);
     this.controllContent(chatModel,responsiveness);
   }
-
-  setCustomAttributes() {
-    this.displayElement = document.querySelector(`.${I.display}`);
-    this.scrollBarElement = document.querySelector(`.${I.scrollGaugeThumb}`);
+  removeContentElement(){
+    let contents = document.querySelectorAll(`.${I.content}`);
+    console.log(contents)
+    contents.forEach((content) => {
+      content.remove()
+    })
+    return
   }
 
+  setCustomAttributes() {
+  }
+  
   setSCrollBar() {
+    const displayElement = document.querySelector(`.${I.display}`);
+    const scrollBarElement = document.querySelector(`.${I.scrollGaugeThumb}`);
+
+
     const customSCrollBarWrapper = document.querySelector(
       `.${I.customScrollBarWrapper}`
     );
 
-    this.scrollBarElement.style.height = `${Math.round(
-      (this.displayElement.clientHeight * customSCrollBarWrapper.clientHeight) /
-        this.displayElement.scrollHeight
+    scrollBarElement.style.height = `${Math.round(
+      (displayElement.clientHeight * customSCrollBarWrapper.clientHeight) /
+        displayElement.scrollHeight
     )}px`;
 
     // this.displayElement.scrollY : this.displayElement.clientHeight = 스크롤의 전체 크기(576) : scrollBarElement.height
@@ -83,35 +89,41 @@ class Iphone extends customElement{
       this.moveCustomScroll();
       if (!this.customScrollIsOpaciting) {
         this.customScrollIsOpaciting = true;
-        this.scrollBarElement.style.transition = "";
-        this.scrollBarElement.style.opacity = 1;
+        scrollBarElement.style.transition = "";
+        scrollBarElement.style.opacity = 1;
         setTimeout(() => {
           this.customScrollIsOpaciting = false;
-          this.scrollBarElement.style.transition = "opacity 0.5s";
-          this.scrollBarElement.style.opacity = 0;
+          scrollBarElement.style.transition = "opacity 0.5s";
+          scrollBarElement.style.opacity = 0;
         }, 1500);
       }
 
-      this.scrollBarElement;
+      // scrollBarElement;
     };
   }
   freeViewMode() {
+    const displayElement = document.querySelector(`.${I.display}`);
+    const scrollBarElement = document.querySelector(`.${I.scrollGaugeThumb}`);
+
     // 1. 채팅방에 스크롤이 생기게 한다
-    this.displayElement.style.overflowY = "auto";
+    displayElement.style.overflowY = "auto";
     // 2. 눈에보이는 customScrollBar를 생기게 한다
-    this.scrollBarElement.style.opacity = "1";
+    scrollBarElement.style.opacity = "1";
     // 3. customScrollBar의 위치 초기화
     this.moveCustomScroll();
     // 4. eventListener를 붙여서 customScrollBar를 움직인다
-    this.displayElement.addEventListener("scroll", this.scrollBarFn);
+    displayElement.addEventListener("scroll", this.scrollBarFn);
   }
   staticViewMode() {
+    const displayElement = document.querySelector(`.${I.display}`);
+    const scrollBarElement = document.querySelector(`.${I.scrollGaugeThumb}`);
+    
     // 1. 채팅방 스크롤 삭제
-    this.displayElement.style.overflowY = "hidden";
+    displayElement.style.overflowY = "hidden";
     // 2. customScrollBar를 보이지 않게 한다
-    this.scrollBarElement.style.opacity = "0";
+    scrollBarElement.style.opacity = "0";
     // 3. removeEventListener
-    const result = this.displayElement.removeEventListener(
+    const result = displayElement.removeEventListener(
       "scroll",
       this.scrollBarFn
     );
@@ -119,28 +131,35 @@ class Iphone extends customElement{
 
   /** 변경 후 가장 마지막 opacity가 1인 요소를 인자로 받는다 */
   repositionScroll({ contents, lastVisibleElementIdx }) {
+    const displayElement = document.querySelector(`.${I.display}`);
+    const scrollBarElement = document.querySelector(`.${I.scrollGaugeThumb}`);
+    
+
     if (lastVisibleElementIdx < 0) return;
 
-    const displayHeightWOChattingBar = this.displayElement.offsetHeight - 100;
+    const displayHeightWOChattingBar = displayElement.offsetHeight - 100;
     const contentOffsetBottom =
       contents[lastVisibleElementIdx].offsetTop +
       contents[lastVisibleElementIdx].clientHeight;
 
     // 스크롤 이동
-    this.displayElement.scrollTop =
+    displayElement.scrollTop =
       contentOffsetBottom - displayHeightWOChattingBar;
   }
   moveCustomScroll() {
+    const displayElement = document.querySelector(`.${I.display}`);
+    const scrollBarElement = document.querySelector(`.${I.scrollGaugeThumb}`);
+
     const customSCrollBarWrapper = document.querySelector(
       `.${I.customScrollBarWrapper}`
     );
     const DSEMaxScrollTop =
-      this.displayElement.scrollHeight - this.displayElement.clientHeight;
+      displayElement.scrollHeight - displayElement.clientHeight;
     const CSBMaxScrollTop =
-      customSCrollBarWrapper.clientHeight - this.scrollBarElement.offsetHeight;
+      customSCrollBarWrapper.clientHeight - scrollBarElement.offsetHeight;
 
-    this.scrollBarElement.style.top = `${Math.round(
-      (this.displayElement.scrollTop * CSBMaxScrollTop) / DSEMaxScrollTop
+    scrollBarElement.style.top = `${Math.round(
+      (displayElement.scrollTop * CSBMaxScrollTop) / DSEMaxScrollTop
     )}px`;
 
     // DE의 최대 scrollTop : 현재 스크롤 Top =
@@ -209,24 +228,15 @@ class Iphone extends customElement{
           });
         }
 
-        console.log(Math.round((chatModel.content.length+2) * window.innerHeight / responsiveness))
-        console.log(Math.round(window.scrollY + window.innerHeight))
-
-        console.log(window.scrollY)
-
       });
     });
   }
 
-  // ----------utils
 
-
-
+  // util
   getNumbersFromString(str) {    const regex = /[^0-9]/g;
     return Number(str.replace(regex, ""));
   }
-
-
 
   // ----evnet
 
