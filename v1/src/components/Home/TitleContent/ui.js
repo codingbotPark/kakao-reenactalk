@@ -26,9 +26,6 @@ export default {
             </div>
             `
         })
-
-        console.log(phones)
-
         return `<div class=${T.PhonesWrapper} >
             ${phones.join("\n")}
         </div>`
