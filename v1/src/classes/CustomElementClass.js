@@ -13,7 +13,7 @@ export default class customElement extends HTMLElement {
   /** targetDom은 있으면 targetDom으로 간다 */
   addInnerHtmlToThis(html, querySelectValue) {
     if (querySelectValue) {
-      let targetDom = document.querySelector(querySelectValue);
+      let targetDom = this.querySelector(querySelectValue);
       targetDom.innerHTML = `
               ${targetDom.innerHTML}
               ${html}
