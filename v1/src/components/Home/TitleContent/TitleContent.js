@@ -16,7 +16,14 @@ class TitleContent extends customElement{
                 this.addInnerHtmlToThis(ui.addPhones(),`.${T.Wrapper}`)
             }
         })
-    }   
+
+        const innerWrapper = document.querySelector(`.${T.InnerWrapper}`)
+        window.addEventListener("scroll",() => {
+            innerWrapper.style.backdropFilter = `blur(${Math.floor((window.scrollY/window.innerHeight) * 10) * 2}px)`
+        })
+    }
+
+
 
     removePhones(){
         const phonesWrapper = document.querySelector(`title-content .${T.PhonesWrapper}`)

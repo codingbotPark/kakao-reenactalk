@@ -20,7 +20,6 @@ export default {
             const orderLine = Math.floor(idx / Math.floor(window.innerWidth / 520))
             const degree = orderLine % 2 === 0 ? 35 : -35
             const responsiveness = Math.floor(Math.random() * 20) + 20
-            console.log(responsiveness)
             return `
             <div style="transform:rotate(${degree}deg);">
             <iphone-div chatModel='${JSON.stringify(mainPageChatModel[idx]?? mainPageChatModel[1])}' responsiveness='${responsiveness}' clickAble='false' ></iphone-div>
