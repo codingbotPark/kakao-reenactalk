@@ -115,7 +115,7 @@ class Iphone extends customElement{
   staticViewMode() {
     const displayElement = document.querySelector(`.${I.display}`);
     const scrollBarElement = document.querySelector(`.${I.scrollGaugeThumb}`);
-    
+
     // 1. 채팅방 스크롤 삭제
     displayElement.style.overflowY = "hidden";
     // 2. customScrollBar를 보이지 않게 한다

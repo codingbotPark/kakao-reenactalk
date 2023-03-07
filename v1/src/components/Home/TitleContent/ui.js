@@ -14,25 +14,25 @@ export default {
         `
     },
     addPhones:() => {
-        const phoneArr = [...Array(Math.floor(window.innerWidth / 400))].map((i,idx) => {
-            const orderLine = idx / (window.innerWidth / 400)
-            // console.log(orderLine)
-            console.log(Math.floor(Math.random() * 20) + 20)
-            // style="transform:rotate()"
+        const phoneArr = Array.from({length:(Math.floor(window.innerWidth / 520)) * Math.ceil((window.innerHeight * 0.7) / 840)},() => null)
+
+        const phones = phoneArr.map((phone,idx) => {
+            const orderLine = Math.floor(idx / Math.floor(window.innerWidth / 520))
+            const degree = orderLine % 2 === 0 ? 35 : -35
+            const responsiveness = Math.floor(Math.random() * 20) + 20
+            console.log(responsiveness)
             return `
-            <iphone-div
-            chatModel='${JSON.stringify(mainPageChatModel[idx])}' 
-            responsiveness='${Math.floor(Math.random() * 20) + 20}'
-            clickAble='false'
-            ></iphone-div>
+            <div style="transform:rotate(${degree}deg);">
+            <iphone-div chatModel='${JSON.stringify(mainPageChatModel[idx]?? mainPageChatModel[1])}' responsiveness='${responsiveness}' clickAble='false' ></iphone-div>
+            </div>
             `
         })
-        console.log(phoneArr)
-        return `
-        <div class=${T.PhonesWrapper} >
-            ${phoneArr.join("")}
-        </div>
-        `
+
+        console.log(phones)
+
+        return `<div class=${T.PhonesWrapper} >
+            ${phones.join("\n")}
+        </div>`
             
     }
 }
