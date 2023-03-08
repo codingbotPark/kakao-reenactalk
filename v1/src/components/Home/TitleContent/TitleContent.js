@@ -29,9 +29,7 @@ class TitleContent extends customElement{
 
             if (this.backdropFilter !== backdropFilter){
                 innerWrapper.style.backdropFilter = `blur(${Math.floor((window.scrollY/window.innerHeight) * 10) * 2}px)`
-                console.log(innerWrapper.style)
                 this.backdropFilter = backdropFilter
-                console.log(innerWrapper.style.backdropFilter)
             }
         })
     }
