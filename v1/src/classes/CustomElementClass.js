@@ -25,4 +25,14 @@ export default class customElement extends HTMLElement {
       `;
     }
   }
+
+  useClickEffects(clickEffects){
+    clickEffects.forEach((clickEffect) => {
+      this.addEventToDOM({
+        eventKind:'click',
+        selector:clickEffect.selector,
+        FN:clickEffect.FN
+      });
+    });
+  }
 }

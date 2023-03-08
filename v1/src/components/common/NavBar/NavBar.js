@@ -1,12 +1,14 @@
 import customElement from "../../../classes/CustomElementClass";
 import ui from "./ui";
 import N from "./NavBar.style.scss"
+import clickEffects from "./clickEffects";
 
 
 class NavBar extends customElement{
     connectedCallback(){
         this.addInnerHtmlToThis(ui.addWrapper())  
         this.addInnerHtmlToThis(ui.addMenus(),`.${N.Wrapper}`)
+        this.useClickEffects(clickEffects)
     }
 }
 

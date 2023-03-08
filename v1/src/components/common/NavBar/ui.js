@@ -8,7 +8,7 @@ export default {
     addMenus:()=>{
         return `${
                     model.map((menu) => `
-                    <li class=${N.Li}>
+                    <li class="${N.Li} ${N[menu.class]}" >
                         <div>
                             <img src=${menu.img} /><h3>${menu.title}</h3>
                         </div>

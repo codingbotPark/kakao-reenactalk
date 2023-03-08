@@ -236,18 +236,6 @@ class Iphone extends customElement{
     return Number(str.replace(regex, ""));
   }
 
-  // ----evnet
-
-  useClickEffects(clickEffects){
-    clickEffects.forEach((clickEffect) => {
-      this.addEventToDOM({
-        eventKind:'click',
-        selector:clickEffect.selector,
-        FN:clickEffect.FN
-      });
-    });
-  }
-
 
 }
 
