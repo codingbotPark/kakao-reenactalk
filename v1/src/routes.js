@@ -5,5 +5,5 @@ import WritePage from "./page/WritePage/WritePage"
 export default {
     '/':HomePage,
     '/talk':IphonePage,
-    '/write':WritePage,
+    '/create':WritePage,
 }

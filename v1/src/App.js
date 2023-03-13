@@ -9,7 +9,6 @@ class App extends HTMLElement {
         this.customHistoryChangeHandler()
         this.popStateHandler()
         this.route()
-
     }
 
     customHistoryChangeHandler(){

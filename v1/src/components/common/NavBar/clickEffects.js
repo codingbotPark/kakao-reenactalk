@@ -16,7 +16,7 @@ const clickEffects = [
     },{
         selector:`.${N.create}`,
         FN:() => {
-            useNavigate('/create','slideToRight',false)
+            useNavigate('/create')
         },
     }
 

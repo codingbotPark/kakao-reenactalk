@@ -4,6 +4,12 @@ export default class customElement extends HTMLElement {
       JSON.parse(this.getAttribute(propsName))
     );
   }
+  parseChildren(){
+    const childrens = [...this.children]
+    this.innerHTML = "" // children 삭제
+    return childrens
+  }
+
 
   addEventToDOM({ eventKind, selector, FN }) {
     const dom = document.querySelector(selector);
@@ -35,4 +41,6 @@ export default class customElement extends HTMLElement {
       });
     });
   }
+
+  
 }
