@@ -16,10 +16,7 @@ class WritePage extends HTMLElement{
             <div style="background-color:${model.backgroundColor};" >
                 <div>
                     <write-form>
-                        <iphone-div
-                            chatModel='${JSON.stringify(model)}'
-                        >
-                        </iphone-div>
+                        <iphone-div chatModel='${JSON.stringify(model)}' ></iphone-div>
                     </write-form>
                 </div>
             </div>

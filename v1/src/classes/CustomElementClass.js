@@ -1,4 +1,5 @@
 export default class customElement extends HTMLElement {
+  
   parseProps() {
     return this.getAttributeNames().map((propsName) =>
       JSON.parse(this.getAttribute(propsName))
@@ -6,7 +7,7 @@ export default class customElement extends HTMLElement {
   }
   parseChildren(){
     const childrens = [...this.children]
-    this.innerHTML = "" // children 삭제
+    this.clearDom()
     return childrens
   }
 
@@ -15,15 +16,25 @@ export default class customElement extends HTMLElement {
     const dom = document.querySelector(selector);
     dom.addEventListener(eventKind, FN);
   }
+  clearDom(){
+    this.innerHTML = ""
+  }
 
   /** targetDom은 있으면 targetDom으로 간다 */
   addInnerHtmlToThis(html, querySelectValue) {
     if (querySelectValue) {
-      let targetDom = this.querySelector(querySelectValue);
-      targetDom.innerHTML = `
+
+      try{
+        let targetDom = this.querySelector(querySelectValue);
+
+        targetDom.innerHTML = `
               ${targetDom.innerHTML}
               ${html}
           `;
+      }catch(err){
+        console.error("addInnerHtmlToThis에 들어온 쿼리로 요소를 찾을 수 없습니다")
+      }
+      
     } else {
       this.innerHTML = `
           ${this.innerHTML}

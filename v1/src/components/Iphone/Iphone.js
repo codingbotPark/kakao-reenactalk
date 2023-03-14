@@ -21,6 +21,8 @@ class Iphone extends customElement{
     // 없을 땐 기본값인 true로 지정
     this.clickAble = clickAble?? true
 
+    this.clearDom()
+
     this.addInnerHtmlToThis(ui.addDisplay(chatModel));
     this.addInnerHtmlToThis(ui.addButtons());
     this.addInnerHtmlToThis(ui.addMarks());

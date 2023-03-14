@@ -8,13 +8,16 @@ export default {
             </div>
         `
     },
-    LeftSideBar:() => {
+    addLeftSideBar:() => {
         return `
-            <div class=${W.SideBar} >
+            <div class=${W.LeftSideBar} >
             </div>
         `
     },
-    RightSideBar:() => {
-
+    addRightSideBar:() => {
+        return `
+            <div class=${W.RightSideBar} >
+            </div>
+        `
     }
 }
