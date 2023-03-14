@@ -5,13 +5,10 @@ import W from "./Write.style.scss"
 class Write extends customElement{
     connectedCallback(){
         const childrens = this.parseChildren()
-        console.log(childrens[0])
-        this.innerHTML = `${childrens[0].outerHTML}`
-
 
         this.addInnerHtmlToThis(ui.addWrapper())
         this.addInnerHtmlToThis(ui.addLeftSideBar(),`.${W.Wrapper}`)
-        // this.addInnerHtmlToThis(childrens[0].outerHTML,`.${W.Wrapper}`)
+        this.addInnerHtmlToThis(childrens[0].outerHTML,`.${W.Wrapper}`)
         this.addInnerHtmlToThis(ui.addRightSideBar(),`.${W.Wrapper}`)
 
     }
