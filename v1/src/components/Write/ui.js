@@ -4,20 +4,20 @@ export default {
     addWrapper:() => {
         return `
             <div class=${W.Wrapper} >
-                
+                <div class=${W.LeftSideBar} ></div>
+                <div class=${W.IphoneWrapper} ></div>
+                <div class=${W.RightSideBar} ></div>
             </div>
         `
     },
     addLeftSideBar:() => {
         return `
-            <div class=${W.LeftSideBar} >
-            </div>
+            
         `
     },
     addRightSideBar:() => {
         return `
-            <div class=${W.RightSideBar} >
-            </div>
+ 
         `
     }
 }

@@ -14,15 +14,15 @@ class WritePage extends HTMLElement{
         
         this.innerHTML = `
             <div style="background-color:${model.backgroundColor};" >
-                <div>
-                    <write-form>
-                        <iphone-div chatModel='${JSON.stringify(model)}' ></iphone-div>
-                    </write-form>
-                </div>
+                <write-form chatModel='${JSON.stringify(model)}' >
+                </write-form>
             </div>
         `
 
     }
+
+
+    
 
 }
 
