@@ -7,14 +7,22 @@ class TitleContent extends customElement{
     phoneNums = null
     backdropFilter = null
 
+    windowFunction = null
+
     connectedCallback(){
         this.addInnerHtmlToThis(ui.addWrapper());
         this.addInnerHtmlToThis(ui.addPhones(),`.${T.Wrapper}`)
 
-
         const innerWrapper = document.querySelector(`.${T.InnerWrapper}`)
+        this.windowFunction = () => {
+            const backdropFilter = Math.floor(Math.floor((window.scrollY/window.innerHeight) * 10) * 3)
+            if (this.backdropFilter !== backdropFilter){
+                innerWrapper.style.backdropFilter = `blur(${Math.floor((window.scrollY/window.innerHeight) * 10) * 2}px)`
+                this.backdropFilter = backdropFilter
+            }
+        }
 
-        window.addEventListener("resize",()=>{
+        this.addEventListener("resize",() => {
             const phoneNums = Math.floor(window.innerWidth / 520)
             if (phoneNums !== this.phoneNums){
                 this.phoneNums = phoneNums
@@ -24,21 +32,17 @@ class TitleContent extends customElement{
             
         })
 
-        window.addEventListener("scroll",() => {
-            const backdropFilter = Math.floor(Math.floor((window.scrollY/window.innerHeight) * 10) * 3)
-
-            if (this.backdropFilter !== backdropFilter){
-                innerWrapper.style.backdropFilter = `blur(${Math.floor((window.scrollY/window.innerHeight) * 10) * 2}px)`
-                this.backdropFilter = backdropFilter
-            }
-        })
+        window.addEventListener("scroll",this.windowFunction)
     }
-
 
 
     removePhones(){
         const phonesWrapper = document.querySelector(`title-content .${T.PhonesWrapper}`)
         phonesWrapper.remove()
+    }
+
+    disconnectedCallback(){
+        window.removeEventListener("scroll",this.windowFunction)  
     }
 
 }
