@@ -7,13 +7,12 @@ class Write extends customElement{
     props = this.parseProps()
 
     connectedCallback(){
-        
-
         this.addInnerHtmlToThis(ui.addWrapper())
         this.addInnerHtmlToThis(ui.addLeftSideBar(),`.${W.LeftSideBar}`)
-        console.log(this.props[0])
         this.addIphone()
         this.addInnerHtmlToThis(ui.addRightSideBar(),`.${W.RightSideBar}`)
+
+        
     }
 
     static get observedAttributes() {
@@ -21,7 +20,7 @@ class Write extends customElement{
     }
     attributeChangedCallback(chatModel) {
         // 위의 속성들 중 하나가 수정되면 호출된다.
-        console.log(chatModel)
+        console.log(chatModel,setModelContent)
     }
 
     addIphone(){

@@ -11,15 +11,20 @@ class WritePage extends HTMLElement{
             title:"새 채팅",
             content:[]
         }
+
+        const setModelContent = {setModelContent(content){
+            model.content = content
+        }}
         
         this.innerHTML = `
             <div style="background-color:${model.backgroundColor};" >
-                <write-form chatModel='${JSON.stringify(model)}' >
+                <write-form chatModel='${JSON.stringify(model)}' setModelContent='${JSON.stringify(setModelContent)}'  >
                 </write-form>
             </div>
         `
 
     }
+    // <write-form chatModel='${JSON.stringify(model)}' ></write-form> 
 
 
     

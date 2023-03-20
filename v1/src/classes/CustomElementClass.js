@@ -7,6 +7,8 @@ export default class customElement extends HTMLElement {
       }
       return JSON.parse(this.getAttribute(propsName))
     });
+    console.log(parsedProps)
+    console.log(this.getAttributeNames())
     return parsedProps.filter((props) => props)
   }
   parseChildren(){
