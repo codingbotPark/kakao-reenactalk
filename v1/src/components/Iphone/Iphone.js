@@ -22,8 +22,6 @@ class Iphone extends customElement{
     this.clickAble = clickAble?? true
 
     /** @todo 왜 props로 넘기면 connectedCallback이 2번 실행될까 */
-    this.clearDom()
-
     this.addInnerHtmlToThis(ui.addDisplay(chatModel));
     this.addInnerHtmlToThis(ui.addButtons());
     this.addInnerHtmlToThis(ui.addMarks());

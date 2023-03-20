@@ -14,7 +14,7 @@ export default {
     addLeftSideBar:() => {
         return `
             <div class=${W.OtherContent} >
-                <div class=${W.OtherContentInner} >
+                <div class=${W.OtherContentAdder} >
                     <div class=${W.OtherProfile} >
                         <img src="https://avatars.githubusercontent.com/u/85085375?v=4" />
                         <img class=${W.arrowSvg} src=${downArrowSvg} />
@@ -33,7 +33,9 @@ export default {
     addRightSideBar:() => {
         return `
             <div class=${W.MyContent} >
-                
+                <div class=${W.MyContentAdder} >
+                    <div class=${W.MyChat} ></div>
+                </div>
             </div>
         `
     }

@@ -1,6 +1,7 @@
 import routes from "./routes"
 
 export default {
+    timer:undefined,
     doPagingEffect(effect,path){
         switch(effect){
             case 'slideToRight':
@@ -28,10 +29,8 @@ export default {
                 window.scrollTo({ left: 0, top: 0, behavior: "auto" });
                 // 1초 뒤에 없애준다
                 setTimeout(() => {
-                    this.children[0].remove()
+                    children[0].remove()
                 },1000)
-
-
                 break;
             default:
                 this.innerHTML = routes[path]

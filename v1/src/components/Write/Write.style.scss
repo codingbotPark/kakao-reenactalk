@@ -41,7 +41,7 @@ write-form {
 .OtherContent{
     display: flex;
     flex-direction: column;
-    .OtherContentInner{
+    .OtherContentAdder{
         display: flex;
         height:100%;
         .OtherProfile{
@@ -120,5 +120,12 @@ write-form {
 }
 
 .MyContent{
-
+    display: flex;
+    flex-direction: column;
+    >.MyContentAdder{
+        width:100%;
+        >.MyChat{
+            width:100%;
+        }
+    }
 }
