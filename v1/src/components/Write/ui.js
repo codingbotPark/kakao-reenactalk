@@ -14,34 +14,34 @@ export default {
     addLeftSideBar:() => {
         return `
             <div class=${W.OtherContent} >
-                <div class=${W.OtherContentAdder} >
-                    <div class=${W.OtherProfile} >
-                        <img src="https://avatars.githubusercontent.com/u/85085375?v=4" />
-                        <img class=${W.arrowSvg} src=${downArrowSvg} />
-                    </div>
-                    <div class=${W.OtherText} >
-                        <input placeholder="이름" />
-                        <div class=${W.OtherChat}>
-                            <div class=${W.OtherChatDeco} ></div>
-                            <textarea placeholder="텍스트" ></textarea>
+                <form class=${W.OtherContentAdder} >
+                        <div class=${W.OtherProfile} >
+                            <img src="https://avatars.githubusercontent.com/u/85085375?v=4" />
+                            <img class=${W.arrowSvg} src=${downArrowSvg} />
                         </div>
+                        <div class=${W.OtherText} >
+                            <input placeholder="이름" />
+                            <div class=${W.OtherChat}>
+                                <div class=${W.OtherChatDeco} ></div>
+                                <textarea placeholder="텍스트" ></textarea>
+                            </div>
                     </div>
-                </div>
+                </form>
             </div>
         `
     },
     addRightSideBar:() => {
         return `
             <div class=${W.MyContent} >
-                <div class=${W.MyContentAdder} >
-                <div class=${W.MyText} >
-                    <input value="나" />
-                    <div class=${W.MyChat} >
-                        <div class=${W.MyChatDeco} ></div>
-                        <textarea placeholder="텍스트" ></textarea>
+                <form class=${W.MyContentAdder} >
+                    <div class=${W.MyText} >
+                        <input value="나" />
+                        <div class=${W.MyChat} >
+                            <div class=${W.MyChatDeco} ></div>
+                            <textarea placeholder="텍스트" ></textarea>
+                        </div>
                     </div>
-                </div>
-                </div>
+                </form>
             </div>
         `
     }

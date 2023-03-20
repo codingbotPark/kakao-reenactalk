@@ -3,22 +3,22 @@ import Write from "../../components/Write/Write";
 import I from "./WritePage.style.scss"
 
 class WritePage extends HTMLElement{
+
+    model = {
+        backgroundColor:"#203e6b",
+        displayColor:"#BACEE0",
+        title:"새 채팅",
+        content:[]
+    }
+
+    setModelContent = {setModelContent(key,payload){
+        this.model[key] = payload
+    }}
+
     connectedCallback(){
-
-        let model = {
-            backgroundColor:"#203e6b",
-            displayColor:"#BACEE0",
-            title:"새 채팅",
-            content:[]
-        }
-
-        const setModelContent = {setModelContent(content){
-            model.content = content
-        }}
-        
         this.innerHTML = `
-            <div style="background-color:${model.backgroundColor};" >
-                <write-form chatModel='${JSON.stringify(model)}' setModelContent='${JSON.stringify(setModelContent)}'  >
+            <div style="background-color:${this.model.backgroundColor};" >
+                <write-form chatModel='${JSON.stringify(this.model)}' setModelContent='${JSON.stringify(this.setModelContent)}'  >
                 </write-form>
             </div>
         `
