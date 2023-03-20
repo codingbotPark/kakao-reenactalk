@@ -34,7 +34,13 @@ export default {
         return `
             <div class=${W.MyContent} >
                 <div class=${W.MyContentAdder} >
-                    <div class=${W.MyChat} ></div>
+                <div class=${W.MyText} >
+                    <input value="나" />
+                    <div class=${W.MyChat} >
+                        <div class=${W.MyChatDeco} ></div>
+                        <textarea placeholder="텍스트" ></textarea>
+                    </div>
+                </div>
                 </div>
             </div>
         `
