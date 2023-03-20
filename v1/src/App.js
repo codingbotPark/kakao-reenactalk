@@ -31,20 +31,13 @@ class App extends HTMLElement {
         })
     }
 
-    // pagingEffect = pagingEffect.doPagingEffect.bind(this)
+    timer = null;
     pagingEffect = pagingEffect.doPagingEffect.bind(this)
     route(path = window.location.pathname,effect){
         if (effect){
-            // const doPagingEffect = pagingEffect.doPagingEffect;
-            // const boundedDoPagingEffect = doPagingEffect.bind(this)
-            // boundedDoPagingEffect(effect,path)
-
             this.pagingEffect(effect,path)
-            
-            // const doPagingEffect = pagingEffect.doPagingEffect;
-            // const boundedDoPagingEffect = doPagingEffect.bind(this)
-            // boundedDoPagingEffect(effect,path)
         } else {
+            clearTimeout(this.timer)
             this.innerHTML = routes[path]
         }
     }
