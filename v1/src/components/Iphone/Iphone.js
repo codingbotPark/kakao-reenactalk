@@ -47,8 +47,9 @@ class Iphone extends customElement{
   static get observedAttributes() {
     return ["chatModel"];
   }
-  attributeChangedCallback(chatModel,responsiveness=1,clickAble) {
+  attributeChangedCallback(name, oldValue, newValue) {
     this.renderContent(chatModel,responsiveness)
+    console.log(name)
   }
 
   renderContent(chatModel,responsiveness=1) {

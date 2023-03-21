@@ -6,7 +6,6 @@ import Iphone from "../Iphone/Iphone";
 class Write extends customElement{
     props = this.parseProps()
     model = this.props[0]
-    setModel = this.props[1]
 
     connectedCallback(){
         this.addInnerHtmlToThis(ui.addWrapper())
@@ -30,6 +29,8 @@ class Write extends customElement{
         this.addInnerHtmlToThis(`<iphone-div chatModel='${JSON.stringify(this.model)}' ></iphone-div>`,`.${W.IphoneWrapper}`)
     }
 
+
+
     setTextAreaHeights(){
         function inner(e){
             e.target.style.height = "1px"
@@ -49,7 +50,11 @@ class Write extends customElement{
         const myChat = this.querySelector(`.${W.MyChat} > textarea`)
         const otherChat = this.querySelector(`.${W.OtherChat} > textarea`)
         myChat.addEventListener("input",(e) => {
-            this.model.push("")
+            if (!this.myTextArea){
+                this.model.content.push("")
+            }
+            console.log(this.model)
+            this.myTextArea = e.target.value
         })
     }
     setSubmitEvnet(){

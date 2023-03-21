@@ -8,17 +8,25 @@ class WritePage extends HTMLElement{
         backgroundColor:"#203e6b",
         displayColor:"#BACEE0",
         title:"새 채팅",
-        content:[]
+        content:[
+            {
+                profie:"https://avatars.githubusercontent.com/u/85085375?v=4",
+                user:"하이",
+                text:"하이",
+                effectMode:"static",
+                effect:{
+                    in:"fadeIn",
+                    out:"fadeOut"
+                }
+            }
+        ]
     }
 
-    setModelContent = {setModelContent(key,payload){
-        this.model[key] = payload
-    }}
 
     connectedCallback(){
         this.innerHTML = `
             <div style="background-color:${this.model.backgroundColor};" >
-                <write-form chatModel='${JSON.stringify(this.model)}' setModelContent='${JSON.stringify(this.setModelContent)}'  >
+                <write-form chatModel='${JSON.stringify(this.model)}'  >
                 </write-form>
             </div>
         `
