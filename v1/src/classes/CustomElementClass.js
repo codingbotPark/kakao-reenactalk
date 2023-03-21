@@ -34,29 +34,19 @@ export default class customElement extends HTMLElement {
         ${target.innerHTML}
         ${html}
       `
-
       target.innerHTML = temp
     }
 
-
     if (querySelectValue) {
-
       try{
         let targetDom = this.querySelector(querySelectValue);
-
-        targetDom.innerHTML = `
-              ${targetDom.innerHTML}
-              ${html}
-          `;
+        exec(targetDom,html,position)
       }catch(err){
         console.error("addInnerHtmlToThis에 들어온 쿼리로 요소를 찾을 수 없습니다")
       }
       
     } else {
-      this.innerHTML = `
-        ${this.innerHTML}
-        ${html}
-      `;
+      exec(this,html,position)
     }
   }
 

@@ -48,7 +48,7 @@ class Write extends customElement{
     myTextList = null
     otherTextArea = null;
     otherTextList = null
-    // otherTextList = this.model.content.filter((list) => list.profile)
+    
     setOnChangeEvent(){
         const myChat = this.querySelector(`.${W.MyChat} > textarea`)
         const otherChat = this.querySelector(`.${W.OtherChat} > textarea`)
