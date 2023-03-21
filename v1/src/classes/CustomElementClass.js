@@ -24,7 +24,21 @@ export default class customElement extends HTMLElement {
   }
 
   /** targetDom은 있으면 targetDom으로 간다 */
-  addInnerHtmlToThis(html, querySelectValue) {
+  addInnerHtmlToThis(html, querySelectValue, position="before") {
+    
+    function exec(target,html,position){
+      const temp = position === "after" ? `
+        ${html}
+        ${target.innerHTML}
+      ` : `
+        ${target.innerHTML}
+        ${html}
+      `
+
+      target.innerHTML = temp
+    }
+
+
     if (querySelectValue) {
 
       try{
@@ -40,11 +54,12 @@ export default class customElement extends HTMLElement {
       
     } else {
       this.innerHTML = `
-          ${this.innerHTML}
-          ${html}
+        ${this.innerHTML}
+        ${html}
       `;
     }
   }
+
 
   useClickEffects(clickEffects){
     clickEffects.forEach((clickEffect) => {

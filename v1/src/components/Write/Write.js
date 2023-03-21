@@ -5,9 +5,11 @@ import Iphone from "../Iphone/Iphone";
 
 class Write extends customElement{
     props = this.parseProps()
-    model = this.props[0]
+    model = null
 
     connectedCallback(){
+        [this.model] = this.props
+
         this.addInnerHtmlToThis(ui.addWrapper())
         this.addInnerHtmlToThis(ui.addLeftSideBar(),`.${W.LeftSideBar}`)
         this.addIphone()
@@ -43,16 +45,25 @@ class Write extends customElement{
     }
 
     myTextArea = null;
+    myTextList = null
     otherTextArea = null;
+    otherTextList = null
+    // otherTextList = this.model.content.filter((list) => list.profile)
     setOnChangeEvent(){
-        function inner(e){
-        }
         const myChat = this.querySelector(`.${W.MyChat} > textarea`)
         const otherChat = this.querySelector(`.${W.OtherChat} > textarea`)
+
+        this.myTextList = this.model.content.filter((content) => !content.profile)
+        this.otherTextList = this.model.content.filter((content) => content.profile)
+
+        console.log(this.myTextList)
+        console.log(this.otherTextList)
+
         myChat.addEventListener("input",(e) => {
             if (!this.myTextArea){
-                this.model.content.push("")
+                this.model.content.push("하이")
             }
+            console.log(this.myTextList)
             console.log(this.model)
             this.myTextArea = e.target.value
         })
@@ -60,8 +71,8 @@ class Write extends customElement{
     setSubmitEvnet(){
         const myForm = this.querySelector(`.${W.MyContentAdder}`)
         const otherForm = this.querySelector(`.${W.OtherContentAdder}`)
-        myForm.addEventListener("onSubmit",(e) => console.log("내 콘텐츠"))
-        otherForm.addEventListener("onSubmit",(e) => console.log("다른사람 콘텐츠"))
+        myForm.addEventListener("submit",(e) => console.log("내 콘텐츠"))
+        otherForm.addEventListener("submit",(e) => console.log("다른사람 콘텐츠"))
     }
 }
 
