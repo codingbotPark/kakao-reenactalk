@@ -12,7 +12,7 @@ class WritePage extends HTMLElement{
             {
                 profile:"https://avatars.githubusercontent.com/u/85085375?v=4",
                 user:"하이",
-                text:"하이",
+                text:"하이", 
                 effectMode:"static",
                 effect:{
                     in:"fadeIn",

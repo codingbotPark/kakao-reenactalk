@@ -11,9 +11,11 @@ class Write extends customElement{
         [this.model] = this.props
 
         this.addInnerHtmlToThis(ui.addWrapper())
-        this.addInnerHtmlToThis(ui.addLeftSideBar(),`.${W.LeftSideBar}`)
+        this.addInnerHtmlToThis(ui.addSideBar(),`.${W.LeftSideBar}`)
         this.addIphone()
-        this.addInnerHtmlToThis(ui.addRightSideBar(),`.${W.RightSideBar}`)
+
+        this.addInnerHtmlToThis(ui.addOtherChatForm(),`.${W.ChattingWrapper}`)
+        this.addInnerHtmlToThis(ui.addMyChatForm(),`.${W.ChattingWrapper}`)
 
         this.setTextAreaHeights()
         this.setOnChangeEvent()
