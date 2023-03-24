@@ -47,11 +47,15 @@ write-form {
     display: flex;
     flex-direction: column;
     // background-color: powderblue;
+    .ContentAdder{
+        width:100%;
+    }
 }
 
 .OtherContentAdder {
     width: 100%;
     display: flex;
+    align-items: flex-end;
     .OtherProfile {
         min-width: 70px;
         height: 70px;
@@ -132,6 +136,7 @@ write-form {
     width: 100%;
     display: flex;
     justify-content: flex-end;
+    align-items: flex-end;
     >.MyText {
         width: 57%;
         display: flex;
@@ -187,24 +192,22 @@ write-form {
     display: flex;
     align-items: flex-end;
     justify-content: center;
+    cursor: pointer;
 
-    >.whenMy {
-        margin-bottom: 7px;
+
+    >.ChangeToOther {
         margin-right: 7px;
         width: 30px;
         min-width: 30px;
-        cursor: pointer;
         svg{
             width:100%;
             height:100%;
         }
     }
-    >.whenOther{
-        margin-bottom: 7px;
+    >.ChangeToMy{
         margin-left: 7px;
         width: 30px;
         min-width: 30px;
-        cursor: pointer;
         svg{
             width:100%;
             height:100%;

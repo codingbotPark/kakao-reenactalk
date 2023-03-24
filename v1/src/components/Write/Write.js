@@ -14,13 +14,13 @@ class Write extends customElement{
         this.addInnerHtmlToThis(ui.addSideBar(),`.${W.LeftSideBar}`)
         this.addIphone()
 
-        this.addInnerHtmlToThis(ui.addOtherChatForm(),`.${W.ChattingWrapper}`)
-        this.addInnerHtmlToThis(ui.addMyChatForm(),`.${W.ChattingWrapper}`)
+        this.addInnerHtmlToThis(ui.addOtherChatForm(),`.${W.ContentAdder}`)
 
         this.setTextAreaHeights()
         this.setOnChangeEvent()
-    }
 
+        this.setClickChangeMode()
+    }
     static get observedAttributes() {
         return ['chatModel'];
     }
@@ -29,12 +29,10 @@ class Write extends customElement{
         console.log(chatModel,setModelContent)
     }
 
+
     addIphone(){
         this.addInnerHtmlToThis(`<iphone-div chatModel='${JSON.stringify(this.model)}' ></iphone-div>`,`.${W.IphoneWrapper}`)
     }
-
-
-
     setTextAreaHeights(){
         function inner(e){
             e.target.style.height = "1px"
@@ -42,15 +40,16 @@ class Write extends customElement{
         }
         const myChat = this.querySelector(`.${W.MyChat} > textarea`)
         const otherChat = this.querySelector(`.${W.OtherChat} > textarea`)
-        myChat.addEventListener("input",inner)
-        otherChat.addEventListener("input",inner)
+        if (myChat) {
+            myChat.addEventListener("input",inner)
+        } else if(otherChat) {
+            otherChat.addEventListener("input",inner)
+        }
     }
-
     myTextArea = null;
     myTextList = null
     otherTextArea = null;
     otherTextList = null
-    
     setOnChangeEvent(){
         const myChat = this.querySelector(`.${W.MyChat} > textarea`)
         const otherChat = this.querySelector(`.${W.OtherChat} > textarea`)
@@ -61,20 +60,41 @@ class Write extends customElement{
         console.log(this.myTextList)
         console.log(this.otherTextList)
 
-        myChat.addEventListener("input",(e) => {
-            if (!this.myTextArea){
-                this.model.content.push("하이")
-            }
-            console.log(this.myTextList)
-            console.log(this.model)
-            this.myTextArea = e.target.value
-        })
+        // myChat.addEventListener("input",(e) => {
+        //     if (!this.myTextArea){
+        //         this.model.content.push("하이")
+        //     }
+        //     console.log(this.myTextList)
+        //     console.log(this.model)
+        //     this.myTextArea = e.target.value
+        // })
     }
     setSubmitEvnet(){
         const myForm = this.querySelector(`.${W.MyContentAdder}`)
         const otherForm = this.querySelector(`.${W.OtherContentAdder}`)
         myForm.addEventListener("submit",(e) => console.log("내 콘텐츠"))
         otherForm.addEventListener("submit",(e) => console.log("다른사람 콘텐츠"))
+    }
+
+
+    setClickChangeMode(){
+        const changeModeButton = document.querySelector(`.${W.ModeChanger}`)
+        changeModeButton.addEventListener("click",(e) => this.changeMode(e.currentTarget))
+    }
+    changeMode(target){
+        const changeTo = target.firstElementChild.className.split("--")[0]
+        console.log(changeTo)
+        if (changeTo === "ChangeToMy"){
+            this.clearDom(`.${W.ContentAdder}`)
+            this.addInnerHtmlToThis(ui.addMyChatForm(),`.${W.ContentAdder}`)
+            this.setClickChangeMode()
+            this.setTextAreaHeights()
+        } else if (changeTo === "ChangeToOther"){
+            this.clearDom(`.${W.ContentAdder}`)
+            this.addInnerHtmlToThis(ui.addOtherChatForm(),`.${W.ContentAdder}`)
+            this.setClickChangeMode()
+            this.setTextAreaHeights()
+        }
     }
 }
 

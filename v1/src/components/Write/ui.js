@@ -1,6 +1,5 @@
 import W from "./Write.style.scss"
 import downArrowSvg from "../../assets/Write/downArrowSvg.svg"
-import changeModeSvg from "../../assets/Write/changeModeSvg.svg"
 import changeModeSvgProvider from "../../assets/Write/changeModeSvgProvider"
 
 export default {
@@ -15,12 +14,15 @@ export default {
     addSideBar:() => {
         return `
             <div class=${W.ChattingWrapper} >
+                <form class=${W.ContentAdder} >
+
+                </form>
             </div>
         `
     },
     addOtherChatForm:() => {
         return `
-            <form class=${W.OtherContentAdder} >
+            <div class=${W.OtherContentAdder} >
                 <div class=${W.OtherProfile} >
                     <img src="https://avatars.githubusercontent.com/u/85085375?v=4" />
                     <img class=${W.arrowSvg} src=${downArrowSvg} />
@@ -33,18 +35,18 @@ export default {
                     </div>
                 </div>
                 <div class=${W.ModeChanger} >
-                    <div class=${W.whenOther}>
+                    <div class=${W.ChangeToMy}>
                     ${changeModeSvgProvider()}
                     </div>
                 </div>
-            </form>
+            </div>
         `
     },
     addMyChatForm:() => {
         return `
-            <form class=${W.MyContentAdder} >
+            <div class=${W.MyContentAdder} >
                 <div class=${W.ModeChanger} >
-                    <div class=${W.whenMy}>
+                    <div class=${W.ChangeToOther}>
                         ${changeModeSvgProvider("#FEE500")}
                     </div>
                 </div>
@@ -55,7 +57,7 @@ export default {
                         <textarea placeholder="텍스트" ></textarea>
                     </div>
                 </div>
-            </form>
+            </div>
         `
     },
 }

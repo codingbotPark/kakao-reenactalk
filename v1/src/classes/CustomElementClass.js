@@ -19,8 +19,13 @@ export default class customElement extends HTMLElement {
     const dom = document.querySelector(selector);
     dom.addEventListener(eventKind, FN);
   }
-  clearDom(){
-    this.innerHTML = ""
+  clearDom(querySelectValue){
+    if (querySelectValue){
+      const dom = document.querySelector(querySelectValue)
+      dom.innerHTML = ""
+    } else {
+      this.innerHTML = ""
+    }
   }
 
   /** targetDom은 있으면 targetDom으로 간다 */
@@ -49,7 +54,6 @@ export default class customElement extends HTMLElement {
       exec(this,html,position)
     }
   }
-
 
   useClickEffects(clickEffects){
     clickEffects.forEach((clickEffect) => {
