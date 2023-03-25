@@ -15,8 +15,7 @@ export default {
         return `
             <div class=${W.ChattingWrapper} >
                 <form class=${W.ContentAdder} >
-
-                </form>
+                </form> 
             </div>
         `
     },
@@ -40,6 +39,7 @@ export default {
                     </div>
                 </div>
             </div>
+            <button type="submit" >추가</button>
         `
     },
     addMyChatForm:() => {
@@ -58,6 +58,7 @@ export default {
                     </div>
                 </div>
             </div>
+            <button type="submit" >추가</button>
         `
     },
 }

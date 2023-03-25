@@ -12,7 +12,7 @@ export default class customElement extends HTMLElement {
   parseChildren(){
     this.clearDom()
     return childrens
-  }
+  } 
 
 
   addEventToDOM({ eventKind, selector, FN }) {
@@ -28,7 +28,7 @@ export default class customElement extends HTMLElement {
     }
   }
 
-  /** targetDom은 있으면 targetDom으로 간다 */
+  /** targetDom은   있으면 targetDom으로 간다 */
   addInnerHtmlToThis(html, querySelectValue, position="before") {
     
     function exec(target,html,position){

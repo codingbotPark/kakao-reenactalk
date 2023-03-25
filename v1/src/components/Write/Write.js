@@ -19,6 +19,8 @@ class Write extends customElement{
         this.setTextAreaHeights()
         this.setOnChangeEvent()
 
+        this.setSubmitEvnet()
+
         this.setClickChangeMode()
     }
     static get observedAttributes() {
@@ -70,10 +72,11 @@ class Write extends customElement{
         // })
     }
     setSubmitEvnet(){
-        const myForm = this.querySelector(`.${W.MyContentAdder}`)
-        const otherForm = this.querySelector(`.${W.OtherContentAdder}`)
-        myForm.addEventListener("submit",(e) => console.log("내 콘텐츠"))
-        otherForm.addEventListener("submit",(e) => console.log("다른사람 콘텐츠"))
+        const addderForm = this.querySelector(`.${W.ContentAdder}`)
+        addderForm.addEventListener("submit",(e) => this.submitAdder(e))
+    }
+    submitAdder(e){
+        e.preventDefault()
     }
 
 
@@ -83,7 +86,6 @@ class Write extends customElement{
     }
     changeMode(target){
         const changeTo = target.firstElementChild.className.split("--")[0]
-        console.log(changeTo)
         if (changeTo === "ChangeToMy"){
             this.clearDom(`.${W.ContentAdder}`)
             this.addInnerHtmlToThis(ui.addMyChatForm(),`.${W.ContentAdder}`)
