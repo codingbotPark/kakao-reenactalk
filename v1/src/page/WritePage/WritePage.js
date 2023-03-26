@@ -10,8 +10,8 @@ class WritePage extends HTMLElement{
         title:"새 채팅",
         content:[
             {
-                profile:"https://avatars.githubusercontent.com/u/85085375?v=4",
-                user:"하이",
+                // profile:"https://avatars.githubusercontent.com/u/85085375?v=4",
+                // user:"하이",
                 text:"하이", 
                 effectMode:"static",
                 effect:{

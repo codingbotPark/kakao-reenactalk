@@ -6,14 +6,18 @@ import Iphone from "../Iphone/Iphone";
 class Write extends customElement{
     props = this.parseProps()
     model = null
+    content = null
 
     connectedCallback(){
         [this.model] = this.props
+        this.content = this.model.content
+        console.log(this.content);
 
         this.addInnerHtmlToThis(ui.addWrapper())
         this.addInnerHtmlToThis(ui.addSideBar(),`.${W.LeftSideBar}`)
         this.addIphone()
 
+        this.addInnerHtmlToThis(ui.addChattingList(this.content),`.${W.AddedContents}`)
         this.addInnerHtmlToThis(ui.addOtherChatForm(),`.${W.ContentAdder}`)
 
         this.setTextAreaHeights()
@@ -48,28 +52,9 @@ class Write extends customElement{
             otherChat.addEventListener("input",inner)
         }
     }
-    myTextArea = null;
-    myTextList = null
-    otherTextArea = null;
-    otherTextList = null
+
     setOnChangeEvent(){
-        const myChat = this.querySelector(`.${W.MyChat} > textarea`)
-        const otherChat = this.querySelector(`.${W.OtherChat} > textarea`)
 
-        this.myTextList = this.model.content.filter((content) => !content.profile)
-        this.otherTextList = this.model.content.filter((content) => content.profile)
-
-        console.log(this.myTextList)
-        console.log(this.otherTextList)
-
-        // myChat.addEventListener("input",(e) => {
-        //     if (!this.myTextArea){
-        //         this.model.content.push("하이")
-        //     }
-        //     console.log(this.myTextList)
-        //     console.log(this.model)
-        //     this.myTextArea = e.target.value
-        // })
     }
     setSubmitEvnet(){
         const addderForm = this.querySelector(`.${W.ContentAdder}`)
@@ -77,11 +62,12 @@ class Write extends customElement{
     }
     submitAdder(e){
         e.preventDefault()
+
     }
 
 
     setClickChangeMode(){
-        const changeModeButton = document.querySelector(`.${W.ModeChanger}`)
+        const changeModeButton = this.querySelector(`.${W.ModeChanger}`)
         changeModeButton.addEventListener("click",(e) => this.changeMode(e.currentTarget))
     }
     changeMode(target){
