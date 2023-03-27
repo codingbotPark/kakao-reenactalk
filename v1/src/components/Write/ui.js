@@ -6,7 +6,7 @@ export default {
     addWrapper:() => {
         return `
             <div class=${W.Wrapper} >
-                <div class=${W.LeftSideBar} ></div>
+                <div class=${W.SideBar} ></div>
                 <div class=${W.IphoneWrapper} ></div>
             </div>
         `

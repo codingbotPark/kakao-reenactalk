@@ -14,7 +14,7 @@ class Write extends customElement{
         console.log(this.content);
 
         this.addInnerHtmlToThis(ui.addWrapper())
-        this.addInnerHtmlToThis(ui.addSideBar(),`.${W.LeftSideBar}`)
+        this.addInnerHtmlToThis(ui.addSideBar(),`.${W.SideBar}`)
         this.addIphone()
 
         this.addInnerHtmlToThis(ui.addChattingList(this.content),`.${W.AddedContents}`)
