@@ -92,5 +92,14 @@ export default {
                 `
             )}
         `
+    },
+    addCustomScrollBar:() => {
+        return `
+            <div class=${W.CustomScrollBarWrapper} >
+                <div>
+                <div class=${W.ScrollGaugeThumb}></div>
+                </div>
+            </div>
+        `
     }
 }

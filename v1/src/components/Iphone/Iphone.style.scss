@@ -378,7 +378,7 @@ iphone-div {
     }
 }
 
-.customScrollBarWrapper{
+.CustomScrollBarWrapper{
     position: absolute;
     top:103px;
     right:13px;
@@ -386,7 +386,7 @@ iphone-div {
         width:7px;
         height:576px;
         position: relative;
-        >.scrollGaugeThumb{
+        >.ScrollGaugeThumb{
             opacity: 0;
             cursor: pointer;
             position: absolute;

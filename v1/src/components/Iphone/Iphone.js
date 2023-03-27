@@ -56,7 +56,7 @@ class Iphone extends customElement{
     this.removeContentElement()
 
     this.addInnerHtmlToThis(ui.addDisplayContent(chatModel), `.${I.display}`);
-    this.setScrollBar(chatModel);
+    this.setScrollBar();
     this.controllContent(chatModel,responsiveness);
   }
   removeContentElement(){
@@ -72,11 +72,11 @@ class Iphone extends customElement{
   
   setScrollBar() {
     const displayElement = this.querySelector(`.${I.display}`);
-    const scrollBarElement = this.querySelector(`.${I.scrollGaugeThumb}`);
+    const scrollBarElement = this.querySelector(`.${I.ScrollGaugeThumb}`);
 
 
     const customSCrollBarWrapper = this.querySelector(
-      `.${I.customScrollBarWrapper}`
+      `.${I.CustomScrollBarWrapper}`
     );
 
     scrollBarElement.style.height = `${Math.round(
@@ -104,7 +104,7 @@ class Iphone extends customElement{
   }
   freeViewMode() {
     const displayElement = this.querySelector(`.${I.display}`);
-    const scrollBarElement = this.querySelector(`.${I.scrollGaugeThumb}`);
+    const scrollBarElement = this.querySelector(`.${I.ScrollGaugeThumb}`);
 
     // 1. 채팅방에 스크롤이 생기게 한다
     displayElement.style.overflowY = "auto";
@@ -117,7 +117,7 @@ class Iphone extends customElement{
   }
   staticViewMode() {
     const displayElement = this.querySelector(`.${I.display}`);
-    const scrollBarElement = this.querySelector(`.${I.scrollGaugeThumb}`);
+    const scrollBarElement = this.querySelector(`.${I.ScrollGaugeThumb}`);
 
     // 1. 채팅방 스크롤 삭제
     displayElement.style.overflowY = "hidden";
@@ -133,7 +133,7 @@ class Iphone extends customElement{
   /** 변경 후 가장 마지막 opacity가 1인 요소를 인자로 받는다 */
   repositionScroll({ contents, lastVisibleElementIdx }) {
     const displayElement = this.querySelector(`.${I.display}`);
-    const scrollBarElement = this.querySelector(`.${I.scrollGaugeThumb}`);
+    const scrollBarElement = this.querySelector(`.${I.ScrollGaugeThumb}`);
     
 
     if (lastVisibleElementIdx < 0) return;
@@ -149,10 +149,10 @@ class Iphone extends customElement{
   }
   moveCustomScroll() {
     const displayElement = this.querySelector(`.${I.display}`);
-    const scrollBarElement = this.querySelector(`.${I.scrollGaugeThumb}`);
+    const scrollBarElement = this.querySelector(`.${I.ScrollGaugeThumb}`);
 
     const customSCrollBarWrapper = this.querySelector(
-      `.${I.customScrollBarWrapper}`
+      `.${I.CustomScrollBarWrapper}`
     );
     const DSEMaxScrollTop =
       displayElement.scrollHeight - displayElement.clientHeight;

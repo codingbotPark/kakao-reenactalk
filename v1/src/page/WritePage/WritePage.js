@@ -1,6 +1,6 @@
 import Iphone from "../../components/Iphone/Iphone";
 import Write from "../../components/Write/Write";
-import I from "./WritePage.style.scss"
+import W from "./WritePage.style.scss"
 
 class WritePage extends HTMLElement{
 
@@ -34,7 +34,14 @@ class WritePage extends HTMLElement{
 
     connectedCallback(){
         this.innerHTML = `
-            <div style="background-color:${this.defaultModel.backgroundColor};" >
+            <div  
+            class=${W.Wrapper}
+            style="
+            background-color:${this.defaultModel.backgroundColor};
+            height:${(this.defaultModel.content.length * 100) + 200}vh;
+            " 
+            
+            >
                 <write-form chatModel='${JSON.stringify(this.defaultModel)}'  >
                 </write-form>
             </div>

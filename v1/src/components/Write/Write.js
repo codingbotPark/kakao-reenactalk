@@ -1,6 +1,7 @@
 import customElement from "../../classes/CustomElementClass";
 import ui from "./ui";
 import W from "./Write.style.scss"
+import WP from "../../page/WritePage/WritePage.style.scss"
 import Iphone from "../Iphone/Iphone";
 
 class Write extends customElement{
@@ -19,6 +20,9 @@ class Write extends customElement{
 
         this.addInnerHtmlToThis(ui.addChattingList(this.content),`.${W.AddedContents}`)
         this.addInnerHtmlToThis(ui.addOtherChatForm(),`.${W.ContentAdder}`)
+        this.addInnerHtmlToThis(ui.addCustomScrollBar(),`.${W.SideBar}`)
+
+        this.moveToEndScroll()
 
         this.setTextAreaHeights()
         this.setOnChangeEvent()
@@ -84,6 +88,22 @@ class Write extends customElement{
             this.setTextAreaHeights()
         }
     }
+
+   
+    moveToEndScroll(){
+        const sideBar = this.querySelector(`.${W.SideBar}`)
+        console.log(sideBar.scrollHeight)
+        sideBar.scrollTo({
+            top:sideBar.scrollHeight,
+            behavior:"smooth"
+        })
+    }
+
+    resizeGlobalHeight(){
+        const wrapper = document.querySelector(`.${WP.Wrapper}`);
+        wrapper.style.height = 200 + (this.model.content.length * 100) + "vh"
+    }
+    
 }
 
 customElements.define("write-form",Write)
