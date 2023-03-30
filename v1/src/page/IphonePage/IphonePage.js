@@ -1,4 +1,5 @@
 import Iphone from "../../components/Iphone/Iphone";
+import NavBar from "../../components/common/NavBar/NavBar";
 import chatModel from "../../model/chatModel";
 import "./IphonePage.style.scss"
 
@@ -12,6 +13,7 @@ class IphonePage extends HTMLElement{
                     <iphone-div chatModel='${JSON.stringify(chatModel)}' ></iphone-div>
                 </div>
             </div>
+            <nav-bar></nav-bar>
         `
     }
 }

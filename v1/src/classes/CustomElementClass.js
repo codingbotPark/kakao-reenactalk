@@ -57,17 +57,12 @@ export default class customElement extends HTMLElement {
 
   useClickEffects(clickEffects){
     clickEffects.forEach((clickEffect) => {
-      console.log(clickEffect,"click이벤트 적용")
       this.addEventToDOM({
         eventKind:'click',
         selector:clickEffect.selector,
         FN:clickEffect.FN
       });
     });
-  }
-
-  disconnectedCallback() {
-    console.log('Custom square element removed from page.');
   }
 
   

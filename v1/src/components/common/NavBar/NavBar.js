@@ -6,7 +6,6 @@ import clickEffects from "./clickEffects";
 
 class NavBar extends customElement{
     connectedCallback(){
-        console.log("네브바생성")
         this.addInnerHtmlToThis(ui.addWrapper())  
         this.addInnerHtmlToThis(ui.addMenus(),`.${N.Wrapper}`)
         this.useClickEffects(clickEffects)

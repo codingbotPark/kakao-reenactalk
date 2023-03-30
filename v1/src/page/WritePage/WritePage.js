@@ -1,5 +1,6 @@
 import Iphone from "../../components/Iphone/Iphone";
 import Write from "../../components/Write/Write";
+import NavBar from "../../components/common/NavBar/NavBar";
 import W from "./WritePage.style.scss"
 
 class WritePage extends HTMLElement{

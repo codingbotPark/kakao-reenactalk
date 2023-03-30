@@ -1,6 +1,7 @@
 import H from "./HomePage.style.scss"
 import TitleContent from "../../components/Home/TitleContent/TitleContent"
 import NavBar from "../../components/common/NavBar/NavBar"
+import HomeBar from "../../components/Home/HomeBar/HomeBar"
 
 class HomePage extends HTMLElement{
 
@@ -13,6 +14,7 @@ class HomePage extends HTMLElement{
             <div class=${H.Wrapper} >
                 <title-content></title-content>
                 <nav-bar></nav-bar>
+                <home-bar></home-bar>
             </div>
         `
     }
