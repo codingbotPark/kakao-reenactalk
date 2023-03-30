@@ -1,0 +1,22 @@
+
+custom-input{
+    .InputWrapper{
+        position: relative;
+        width:100%;
+        .Input{
+            border: none;
+            padding-left:20px;
+            border-radius: 10px;
+            width:100%;
+            height: 40px;
+            font-size: large;
+            outline: none;
+        }
+        .InputDeco{
+            position: absolute;
+            left:20px;
+            top:10px;
+            color:black;
+        }
+    }
+}
