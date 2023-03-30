@@ -40,11 +40,11 @@ class WritePage extends HTMLElement{
             background-color:${this.defaultModel.backgroundColor};
             height:${(this.defaultModel.content.length * 100) + 200}vh;
             " 
-            
             >
                 <write-form chatModel='${JSON.stringify(this.defaultModel)}'  >
                 </write-form>
             </div>
+            <nav-bar></nav-bar>
         `
 
     }

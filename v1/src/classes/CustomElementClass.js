@@ -16,12 +16,12 @@ export default class customElement extends HTMLElement {
 
 
   addEventToDOM({ eventKind, selector, FN }) {
-    const dom = document.querySelector(selector);
+    const dom = this.querySelector(selector);
     dom.addEventListener(eventKind, FN);
   }
   clearDom(querySelectValue){
     if (querySelectValue){
-      const dom = document.querySelector(querySelectValue)
+      const dom = this.querySelector(querySelectValue)
       dom.innerHTML = ""
     } else {
       this.innerHTML = ""
@@ -57,12 +57,17 @@ export default class customElement extends HTMLElement {
 
   useClickEffects(clickEffects){
     clickEffects.forEach((clickEffect) => {
+      console.log(clickEffect,"click이벤트 적용")
       this.addEventToDOM({
         eventKind:'click',
         selector:clickEffect.selector,
         FN:clickEffect.FN
       });
     });
+  }
+
+  disconnectedCallback() {
+    console.log('Custom square element removed from page.');
   }
 
   

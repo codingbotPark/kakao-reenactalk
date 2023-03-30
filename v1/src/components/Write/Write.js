@@ -22,6 +22,7 @@ class Write extends customElement{
         this.addInnerHtmlToThis(ui.addChattingList(this.content),`.${W.AddedContents}`)
         this.addInnerHtmlToThis(ui.addOtherChatForm(),`.${W.ContentAdder}`)
 
+        this.setScrollBar()
         this.moveToEndScroll()
 
         this.setTextAreaHeights()
@@ -91,7 +92,7 @@ class Write extends customElement{
 
    
     moveToEndScroll(){
-        const sideBar = this.querySelector(`.${W.SideBar}`)
+        const sideBar = this.querySelector(`.${W.ChattingWrapper}`)
         console.log(sideBar.scrollHeight)
         sideBar.scrollTo({
             top:sideBar.scrollHeight,
@@ -99,11 +100,61 @@ class Write extends customElement{
         })
     }
 
+
+
     resizeGlobalHeight(){
         const wrapper = document.querySelector(`.${WP.Wrapper}`);
         wrapper.style.height = 200 + (this.model.content.length * 100) + "vh"
     }
     
+
+    // --- scroll
+    customScrollIsOpaciting = false;
+    setScrollBar(){
+        const chattingWrapper = this.querySelector(`.${W.ChattingWrapper}`)
+        const scrollBarElement = this.querySelector(`.${W.ScrollGaugeThumb}`);
+        const customSCrollBarWrapper = this.querySelector(`.${W.CustomScrollBarWrapper}`);
+    
+        scrollBarElement.style.height = `${Math.round(
+          (chattingWrapper.clientHeight * customSCrollBarWrapper.clientHeight) /
+          chattingWrapper.scrollHeight
+        )}px`;
+    
+        this.scrollBarFn = (e) => {
+          this.moveCustomScroll();
+          if (!this.customScrollIsOpaciting) {
+            this.customScrollIsOpaciting = true;
+            scrollBarElement.style.transition = "";
+            scrollBarElement.style.opacity = 1;
+            setTimeout(() => {
+              this.customScrollIsOpaciting = false;
+              scrollBarElement.style.transition = "opacity 0.5s";
+              scrollBarElement.style.opacity = 0;
+            }, 1500);
+          }
+    
+          // scrollBarElement;
+        };
+
+        chattingWrapper.addEventListener("scroll", this.scrollBarFn);
+    }
+    moveCustomScroll() {
+        const displayElement = this.querySelector(`.${W.ChattingWrapper}`);
+        const scrollBarElement = this.querySelector(`.${W.ScrollGaugeThumb}`);
+        const customSCrollBarWrapper = this.querySelector(`.${W.CustomScrollBarWrapper}`);
+
+        const DSEMaxScrollTop =
+          displayElement.scrollHeight - displayElement.clientHeight;
+        const CSBMaxScrollTop =
+          customSCrollBarWrapper.clientHeight - scrollBarElement.offsetHeight;
+    
+        scrollBarElement.style.top = `${Math.round(
+          (displayElement.scrollTop * CSBMaxScrollTop) / DSEMaxScrollTop
+        )}px`;
+    
+        // DE의 최대 scrollTop : 현재 스크롤 Top =
+        // CS의 전체 세로 - CS의 세로 : CS의 position top
+      }
 }
 
 customElements.define("write-form",Write)
