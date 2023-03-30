@@ -16,11 +16,11 @@ class Write extends customElement{
 
         this.addInnerHtmlToThis(ui.addWrapper())
         this.addInnerHtmlToThis(ui.addSideBar(),`.${W.SideBar}`)
+        this.addInnerHtmlToThis(ui.addCustomScrollBar(),`.${W.SideBar}`)
         this.addIphone()
 
         this.addInnerHtmlToThis(ui.addChattingList(this.content),`.${W.AddedContents}`)
         this.addInnerHtmlToThis(ui.addOtherChatForm(),`.${W.ContentAdder}`)
-        this.addInnerHtmlToThis(ui.addCustomScrollBar(),`.${W.SideBar}`)
 
         this.moveToEndScroll()
 

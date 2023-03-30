@@ -34,7 +34,7 @@ class App extends HTMLElement {
     timer = null;
     pagingEffect = pagingEffect.doPagingEffect.bind(this)
     route(path = window.location.pathname,effect){
-        if (effect){
+        if (effect){ 
             this.pagingEffect(effect,path)
         } else {
             clearTimeout(this.timer)

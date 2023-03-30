@@ -1,4 +1,4 @@
-// import "./style/_variable.scss"
+    // import "./style/_variable.scss"
 import I from "./index.style.scss"
 import App from "./App"
 
