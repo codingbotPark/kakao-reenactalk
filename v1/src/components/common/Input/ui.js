@@ -4,8 +4,8 @@ export default {
     addWrapper:({namedClass,placeHolder}) => {
         return `
             <div class=${I.InputWrapper} >
-                <input class='${I.Input} ${namedClass}' />
-                <div class=${I.InputDeco} >${placeHolder}</div>
+                <input id='${namedClass}' class='${I.Input} ${namedClass}' />
+                <label for='${namedClass}' class=${I.InputDeco} >${placeHolder}</label>
             </div>
         `
     }

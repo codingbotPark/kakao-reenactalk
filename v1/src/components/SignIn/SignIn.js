@@ -10,6 +10,7 @@ class SignIn extends customElement{
 
         this.addInnerHtmlToThis(ui.addWrapper())
         this.addInnerHtmlToThis(ui.addInputs(),`.${S.Wrapper}`)
+        this.addInnerHtmlToThis(ui.addSignInButton(),`.${S.Wrapper}`)
     }
 
 }

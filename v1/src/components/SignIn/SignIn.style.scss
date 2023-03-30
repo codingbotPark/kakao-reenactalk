@@ -5,8 +5,14 @@ sign-in{
     display: flex;
     justify-content: center;
     align-items: center;
+    // padding-top: 20vh;
+    box-sizing: border-box;
     .Wrapper{
-        width:350px;
+        width:400px;
+        // height:500px;
+        height:fit-content;
+        border-radius: 15px;
+        border: 1px solid gray;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -17,6 +23,43 @@ sign-in{
 
         // 명시적인 class
         .IdInput{display: block;}
+        .PasswordInput{display: block;}
+
+        .IdInputWrapper{
+            width:100%;
+            margin-top:40px;
+            width:350px;
+        }
+        .PasswordInputWrapper{
+            width:100%;
+            margin-top:35px;
+            width:350px;
+        }
+
+        .SignInButtonWrapper{
+            margin-top: 80px;
+            width:100%;
+            height:100px;
+            cursor: pointer;
+            background-color: rgba(0,0,0,0);
+            border:none;
+            display: flex;
+            justify-content: center;
+            .SignInButtonInner{
+                width:80%;
+                height: 100%;
+                border-top:1px solid gray;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                >img{width:40px;}
+                >div{font-size: 20px;}
+                >*{
+                    color:white;
+                    margin:10px;
+                }
+            }
+        }
     }
 }
 
