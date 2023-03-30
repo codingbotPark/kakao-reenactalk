@@ -2,7 +2,7 @@ import Iphone from "./components/Iphone/Iphone"
 
 import IphonePage from "./page/IphonePage/IphonePage"
 import pagingEffect from "./pagingEffect"
-import routes from "./routes"
+import router from "./router"
 
 class App extends HTMLElement {
     connectedCallback(){
@@ -38,7 +38,7 @@ class App extends HTMLElement {
             this.pagingEffect(effect,path)
         } else {
             clearTimeout(this.timer)
-            this.innerHTML = routes[path]
+            this.innerHTML = router(path)
         }
     }
 }

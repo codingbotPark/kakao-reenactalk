@@ -1,4 +1,4 @@
-import routes from "./routes"
+import router from "./router"
 
 export default {
     doPagingEffect(effect,path){
@@ -8,7 +8,7 @@ export default {
                 const app = document.querySelector("app-div")
 
                 // innerHTML을 사용하면 전체 html을 건들게 되어서 렌더링이 두 번 일어나게 되었다                
-                const newPage = document.createElement(routes[path].split("<")[1].slice(0,-1))
+                const newPage = document.createElement(router(path).split("<")[1].slice(0,-1))
                 this.appendChild(newPage)
             
                 console.log(this.children)
@@ -33,7 +33,7 @@ export default {
                 break;
             default:
                 clearTimeout(this.timer)
-                this.innerHTML = routes[path]
+                this.innerHTML = router(path)
         }
     }
 }
