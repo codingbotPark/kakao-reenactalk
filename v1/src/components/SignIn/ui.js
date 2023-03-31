@@ -1,5 +1,4 @@
 import S from "./SignIn.style.scss"
-import SignInSvg from "../../assets/sign/signInSvg.svg"
 import leftArrowSvg from "../../assets/common/leftArrowSvg.svg"
 import rightArrowSvg from "../../assets/common/rightArrowSvg.svg"
 
@@ -27,7 +26,6 @@ export default {
         return `
             <button class=${S.SignInButtonWrapper} >
                 <div class=${S.SignInButtonInner} >
-                    <img src=${SignInSvg} /> 
                     <div>Login</div>
                 </div>
             </button>
