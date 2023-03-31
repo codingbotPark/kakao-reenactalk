@@ -5,7 +5,9 @@ export default {
     addWrapper:() => {
         return `
             <div class=${S.Wrapper} >
-                <h1>로그인</h1>
+                <div class=${S.InnerWrapper} >
+                    <h1>로그인</h1>
+                </div>
             </div>
         `
     },
@@ -31,7 +33,10 @@ export default {
     },
     addSignUpButton:() => {
         return `
-            
+            <div class=${S.AdditionMenu} >
+                <p>홈으로</p>
+                <p>회원가입</p>
+            </div>
         `
     }
 }
