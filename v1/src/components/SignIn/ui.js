@@ -1,5 +1,7 @@
 import S from "./SignIn.style.scss"
 import SignInSvg from "../../assets/sign/signInSvg.svg"
+import leftArrowSvg from "../../assets/common/leftArrowSvg.svg"
+import rightArrowSvg from "../../assets/common/rightArrowSvg.svg"
 
 export default {
     addWrapper:() => {
@@ -34,8 +36,14 @@ export default {
     addSignUpButton:() => {
         return `
             <div class=${S.AdditionMenu} >
-                <p>홈으로</p>
-                <p>회원가입</p>
+                <div class=${S.GoHome} >
+                    <img src=${leftArrowSvg} /> 
+                    <p>홈으로</p>
+                </div>
+                <div class=${S.GoSignUp} >
+                    <p>회원가입</p>
+                    <img src=${rightArrowSvg} />
+                </div>
             </div>
         `
     }

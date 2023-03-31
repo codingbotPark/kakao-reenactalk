@@ -89,4 +89,14 @@ sign-in {
 .AdditionMenu{
     display: flex;
     justify-content: space-between;
+    >div{
+        display: flex;
+        cursor:pointer;
+        >img{
+            width:20px;
+        }
+    }
+    // 명시적 style
+    .GoHome{display: flex;}
+    .GoSignUp{display: flex;}
 }
