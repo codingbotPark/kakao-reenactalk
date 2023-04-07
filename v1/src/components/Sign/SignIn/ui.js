@@ -1,7 +1,7 @@
 import S from "./SignIn.style.scss"
-import leftArrowSvg from "../../assets/common/leftArrowSvg.svg"
-import rightArrowSvg from "../../assets/common/rightArrowSvg.svg"
-import CustomInput from "../common/Input/Input"
+import leftArrowSvg from "../../../assets/common/leftArrowSvg.svg"
+import rightArrowSvg from "../../../assets/common/rightArrowSvg.svg"
+import CustomInput from "../../common/Input/Input"
 
 export default {
     addInputs:() => {

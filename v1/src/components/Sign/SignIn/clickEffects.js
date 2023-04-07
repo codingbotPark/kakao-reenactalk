@@ -1,4 +1,4 @@
-import useNavigate from "../../functions/useNavigate";
+import useNavigate from "../../../functions/useNavigate";
 import S from "./SignIn.style.scss"
 
 const clickEffects = [

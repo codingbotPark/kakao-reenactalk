@@ -29,6 +29,7 @@
     "webpack-merge": "^5.8.0"
   },
   "dependencies": {
+    "@babel/preset-env": "^7.21.4",
     "@babel/runtime": "^7.20.7",
     "@babel/runtime-corejs3": "^7.20.7",
     "babel-loader": "^9.1.2",

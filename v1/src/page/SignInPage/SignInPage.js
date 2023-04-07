@@ -1,5 +1,5 @@
 import S from "./SignInPage.style.scss"
-import SignIn from "../../components/SignIn/SignIn"
+import SignIn from "../../components/Sign/SignIn/SignIn"
 
 class SignInPage extends HTMLElement{
     connectedCallback(){
