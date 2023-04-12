@@ -14,7 +14,7 @@ export const demos: Item[] = [
     items: [
       {
         name: '유저',
-        slug: 'route-groups',
+        slug: 'user',
         description: '유저관련 어드민 페이지',
       },
     ],
