@@ -1,5 +1,6 @@
-import userRouter from "./userRouter"
+import UserRouter from "./userRouter"
+
 
 export default {
-    userRouter
+    UserRouter
 }

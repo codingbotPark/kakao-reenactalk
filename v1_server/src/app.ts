@@ -30,12 +30,9 @@ export default class App{
     }
 
     private setRouters(){
-        this.app.get('/', (req:express.Request, res:express.Response) => {
-          res.send('hello!');
-        })
 
-        const userRouter = new router.userRouter()
-
-        this.app.use('/api/user',userRouter.registerRoutes)
+        const userRouter = new router.UserRouter()
+        this.app.use('/api/user',userRouter.registerRoutes())
+        
     }
 }

@@ -3,7 +3,7 @@ import * as M from "./Modal.style";
 
 import Portal from "./Portal";
 
-import useClickOutSide from "../../../hooks/modal/useClickOutSide";
+import useClickOutSide from "../../../hooks/useClickOutSide";
 
 const Modal = ({
   children,
@@ -31,6 +31,7 @@ const Modal = ({
       document.removeEventListener('mousedown', clickOutside);
     };
   }, [clickOutside]);
+
 
   return (
     <Portal elementId="modal-root">

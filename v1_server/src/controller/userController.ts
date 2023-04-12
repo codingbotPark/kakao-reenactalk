@@ -1,6 +1,7 @@
 import * as express from "express"
 import { MiddleWareType } from "../types"
 import UserService from "../service/userService"
+import { userInputType } from "../types/user"
 
 export default class UserController{
     private service:UserService = new UserService()
@@ -8,13 +9,19 @@ export default class UserController{
     constructor(){}
 
     public getUsers:MiddleWareType = async(req,res) => {
+
         // const {userId} = req.query
         const {finded, status, data} = await this.service.getUsers()
         return res.json({finded, status, data})
     }
 
     public signUpUser:MiddleWareType = async(req,res) => {
-        const {created,status} = await this.service.signUpUser()
+        const {nickname,email,password,power}:userInputType = req.body
+
+        const {created,status} = await this.service.signUpUser({nickname,email,password,power})
+
+
+
         return res.json({created,status})
     }
 
