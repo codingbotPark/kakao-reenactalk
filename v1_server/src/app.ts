@@ -3,6 +3,7 @@ import "reflect-metadata";
 import 'dotenv/config'
 import { AppDataSource } from "./data-source";
 import * as cors from "cors"
+import router from "./router";
 
 export default class App{
     public app:express.Application
@@ -25,6 +26,7 @@ export default class App{
 
     private setMiddleWare(){
         this.app.use(cors<express.Request>())
+        this.app.use(express.urlencoded({extended:true}))
     }
 
     private setRouters(){
@@ -32,6 +34,8 @@ export default class App{
           res.send('hello!');
         })
 
-        this.app.use('/api/user')
+        const userRouter = new router.userRouter()
+
+        this.app.use('/api/user',userRouter.registerRoutes)
     }
 }

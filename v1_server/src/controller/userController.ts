@@ -1,24 +1,36 @@
 import * as express from "express"
+import { MiddleWareType } from "../types"
+import UserService from "../service/userService"
 
 export default class UserController{
-    constructor(){
+    private service:UserService = new UserService()
 
+    constructor(){}
+
+    public getUsers:MiddleWareType = async(req,res) => {
+        // const {userId} = req.query
+        const {finded, status, data} = await this.service.getUsers()
+        return res.json({finded, status, data})
     }
 
-    public getUsers(){
-
+    public signUpUser:MiddleWareType = async(req,res) => {
+        const {created,status} = await this.service.signUpUser()
+        return res.json({created,status})
     }
 
-    public signUpUser(){
-
+    public signInUser:MiddleWareType = async(req,res) => {
+        const {logined,status} = await this.service.signInUser()
+        return res.json({logined:"1",status:"200"})
     }
 
-    public deleteUser(){
-
+    public deleteUser:MiddleWareType = async(req,res) => {
+        const {deleted,status} = await this.service.deleteUser()
+        return res.json({deleted,status})
     }
 
-    public updateUser(){
-        
+    public updateUser:MiddleWareType = async(req,res) => {
+        const {updated,status} = await this.service.updateUser()
+        return res.json({updated,status})
     }
 
 }
