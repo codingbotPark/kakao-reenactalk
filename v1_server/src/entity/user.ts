@@ -12,7 +12,7 @@ export default class User extends AutoIdEntity{
     @Column({type:'varchar', unique:true, length:USER_ENTITY.nicknameMaxLength})
     nickname!:string;
 
-    @Column({type:'char',unique:true, length:USER_ENTITY.hashPasswordLength})
+    @Column({type:'char',unique:false, length:USER_ENTITY.hashPasswordLength})
     password!:string;
 
     @Column({type:'int',unique:false})

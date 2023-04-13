@@ -1,7 +1,7 @@
 import * as express from "express"
 import { MiddleWareType } from "../types"
 import UserService from "../service/userService"
-import { userInputType } from "../types/user"
+import { UserInputType } from "../types/user"
 
 export default class UserController{
     private service:UserService = new UserService()
@@ -18,7 +18,7 @@ export default class UserController{
 
     public signUpUser:MiddleWareType = async(req,res) => {
         
-        const {nickname,email,password,power}:userInputType = req.body
+        const {nickname,email,password,power}:UserInputType = req.body
 
         console.log(req.body)
 
@@ -39,8 +39,8 @@ export default class UserController{
     }
 
     public updateUser:MiddleWareType = async(req,res) => {
-        const {id} = req.body
-        const {updated,status} = await this.service.updateUser({id})
+        const {id,email,nickname,password,power} = req.body
+        const {updated,status} = await this.service.updateUser({id,email,nickname,password,power})
         return res.json({updated,status})
     }
 

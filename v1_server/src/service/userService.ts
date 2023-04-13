@@ -1,6 +1,6 @@
 import User from "../entity/user";
 import { userRepository } from "../repository";
-import { userInputType } from "../types/user";
+import { UserInputType, UserInputTypeWithId } from "../types/user";
 
 export default class UserService {
   constructor() {}
@@ -18,9 +18,8 @@ export default class UserService {
     return {finded:1,status:200,data:res};
   }
 
-  public async signUpUser({ nickname, email, password, power }: userInputType) {
+  public async signUpUser({ nickname, email, password, power }: UserInputType) {
     const user = new User();
-    console.log("-------",{ nickname, email, password, power },"-------")
     user.email = email;
     user.nickname = nickname;
     user.password = password;
@@ -56,10 +55,16 @@ export default class UserService {
     return { deleted: "1", status: "200" };
   }
 
-  public async updateUser({id}:{id:number}) {
+  public async updateUser({id,email,nickname,password,power}:UserInputTypeWithId) {
 
+    let res;
     try{
-        
+        await userRepository
+        .createQueryBuilder('user')
+        .update(User)
+        .set({email,nickname,password,power})
+        .where("id = :id",{id})
+        .execute()
     }catch(err){
         console.log(err)
     }
