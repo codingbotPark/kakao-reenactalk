@@ -33,7 +33,10 @@ function App() {
     axios.delete(`http://localhost:9000/api/user?id=${id}`)
     .then((data) => {
       console.log(id,idx,data)
-      setUser(prev => prev.splice(idx,1))
+      api.get('/user')
+      .then((res) => {
+          setUser(res.data.data)
+      })
     })
     .catch((err) => {
       console.log(err)
@@ -71,7 +74,7 @@ function App() {
       {
         isModalOpen && (
           <Modal setter={setIsModalOpen}>
-            <AddUser/>
+            <AddUser setIsModalOpen={setIsModalOpen} setUser={setUser}/>
           </Modal>
         )
       }
