@@ -14,9 +14,7 @@ function App() {
   
   const [isModalOpen, setIsModalOpen] = useState(false)
 
-  const [users,setUser] = useState([
-    
-  ])
+  const [users,setUser] = useState([])
 
   useEffect(() => {
     api.get('/user')
@@ -30,6 +28,21 @@ function App() {
     })
   },[])
 
+
+  function deleteUser(id,idx){
+    axios.delete(`http://localhost:9000/api/user?id=${id}`)
+    .then((data) => {
+      console.log(id,idx,data)
+      setUser(prev => prev.splice(idx,1))
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+  }
+
+  function updateUser(){
+
+  }
   
 
   return (
@@ -40,7 +53,7 @@ function App() {
       </A.NavBar>
       <A.InnerWrapper>
         {
-          users.map((user) => (
+          users.map((user,idx) => (
             <A.ItemWrapper key={user.id} >
               <div>ID : {user.id}</div>
               <div>닉네임 : {user.email}</div>
@@ -49,8 +62,8 @@ function App() {
               <div>권한 : {user.power}</div>
               <div>생성날짜 : {user.createdAt}</div>
               <div>수정날짜 : {user.updatedAt}</div>
-              <A.ItemImage src={deleteSvg} />
-              <A.ItemImage src={updateSvg} />
+              <A.ItemImage src={deleteSvg} onClick={() => deleteUser(user.id,idx)} />
+              <A.ItemImage src={updateSvg} onClick={() => updateUser()} />
             </A.ItemWrapper>
           ))
         }

@@ -40,13 +40,14 @@ export default class UserService {
     return { logined: "1", status: "200" };
   }
 
-  public async deleteUser({id}:{id:number}) {
+  public async deleteUser({id}:{id:any}) {
+
     let res;
     try {
         await userRepository
         .createQueryBuilder('user')
         .softDelete()
-        .where("id = :id",{id:1})
+        .where("id = :id",{id})
         .execute()
     } catch(err){
         console.log(err)

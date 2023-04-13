@@ -33,7 +33,8 @@ export default class UserController{
     }
 
     public deleteUser:MiddleWareType = async(req,res) => {
-        const {id} = req.body
+        const {id} = req.query
+
         const {deleted,status} = await this.service.deleteUser({id})
         return res.json({deleted,status})
     }
