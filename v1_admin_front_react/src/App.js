@@ -60,8 +60,8 @@ function App() {
           users.map((user,idx) => (
             <A.ItemWrapper key={user.id} >
               <div>ID : {user.id}</div>
-              <div>닉네임 : {user.email}</div>
-              <div>이메일 : {user.nickname}</div>
+              <div>닉네임 : {user.nickname}</div>
+              <div>이메일 : {user.email}</div>
               <div>비밀번호 : {user.password}</div>
               <div>권한 : {user.power}</div>
               <div>생성날짜 : {user.createdAt}</div>
