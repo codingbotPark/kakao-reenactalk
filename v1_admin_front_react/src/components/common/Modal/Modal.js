@@ -7,7 +7,8 @@ import useClickOutSide from "../../../hooks/useClickOutSide";
 
 const Modal = ({
   children,
-  setter
+  setter,
+  setTarget
 }) => {
   useEffect(() => {
     document.body.style.cssText = `
@@ -24,7 +25,7 @@ const Modal = ({
   }, []);
 
   // 모달 설정
-  const [el, clickOutside] = useClickOutSide(setter);
+  const [el, clickOutside] = useClickOutSide(setter,setTarget);
   useEffect(() => {
     document.addEventListener('mousedown', clickOutside);
     return () => {

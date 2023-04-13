@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import * as A from "./AddUser.style"
 import api from '../../util/customAxios';
+import { useEffect } from 'react';
 
-const AddUser = ({setIsModalOpen,setUser}) => {
+const AddUser = ({setIsModalOpen,setUser,target,setTarget}) => {
     const [inputs,setInputs] = useState({
         nickname:"",
         email:"",
@@ -10,24 +11,51 @@ const AddUser = ({setIsModalOpen,setUser}) => {
         power:"",
     })
 
+    useEffect(() => {
+        setInputs({
+            nickname:target.nickname,
+            email:target.email,
+            password:target.password,
+            power:target.power
+        })
+    },[])
+
+    console.log(target)
+
+    const mode = target.id
     function submit(){
         console.log(inputs)
-        api.post("/user",inputs)
-        .then((res) => {
-            api.get('/user')
+
+        if (mode){
+            api.put("/user",{id:target.id,...inputs})
             .then((res) => {
-                setUser(res.data.data)
+                api.get('/user')
+                .then((res) => {
+                    setUser(res.data.data)
+                })
+                setIsModalOpen(false)
             })
-            setIsModalOpen(false)
-        })
-        .catch((err) => {
-            console.log(err)
-        })
+            .catch((err) => {
+                console.log(err)
+            })
+        } else {
+            api.post("/user",inputs)
+            .then((res) => {
+                api.get('/user')
+                .then((res) => {
+                    setUser(res.data.data)
+                })
+                setIsModalOpen(false)
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+        }
     }
 
     return (
         <A.Wrapper>
-            <h2>등록하기</h2>
+            <h2>{mode ? "수정하기" : "등록하기"}</h2>
             <input placeholder='닉네임' 
             onChange={(e) => setInputs((prev) => {
                 return {
@@ -48,7 +76,7 @@ const AddUser = ({setIsModalOpen,setUser}) => {
              onChange={(e) => setInputs((prev) => {
                 return {
                     ...prev,
-                    email:e.target.value
+                    password:e.target.value
                 }
             })} 
             defaultValue={inputs.password} />
@@ -60,7 +88,7 @@ const AddUser = ({setIsModalOpen,setUser}) => {
                 }
             })} 
             defaultValue={inputs.power} />
-            <button onClick={submit} >등록하기</button>
+            <button onClick={submit} >{mode ? "수정하기" : "등록하기"}</button>
         </A.Wrapper>
     );
 };

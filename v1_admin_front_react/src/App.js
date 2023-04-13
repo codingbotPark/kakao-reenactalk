@@ -13,8 +13,9 @@ import axios from "axios"
 function App() {
   
   const [isModalOpen, setIsModalOpen] = useState(false)
-
   const [users,setUser] = useState([])
+  const [target,setTarget] = useState({})
+
 
   useEffect(() => {
     api.get('/user')
@@ -32,7 +33,6 @@ function App() {
   function deleteUser(id,idx){
     axios.delete(`http://localhost:9000/api/user?id=${id}`)
     .then((data) => {
-      console.log(id,idx,data)
       api.get('/user')
       .then((res) => {
           setUser(res.data.data)
@@ -43,8 +43,9 @@ function App() {
     })
   }
 
-  function updateUser(){
-
+  function updateUser(e){
+    setTarget(e)
+    setIsModalOpen(true)
   }
   
 
@@ -66,15 +67,15 @@ function App() {
               <div>생성날짜 : {user.createdAt}</div>
               <div>수정날짜 : {user.updatedAt}</div>
               <A.ItemImage src={deleteSvg} onClick={() => deleteUser(user.id,idx)} />
-              <A.ItemImage src={updateSvg} onClick={() => updateUser()} />
+              <A.ItemImage src={updateSvg} onClick={() => updateUser(user)} />
             </A.ItemWrapper>
           ))
         }
       </A.InnerWrapper>
       {
         isModalOpen && (
-          <Modal setter={setIsModalOpen}>
-            <AddUser setIsModalOpen={setIsModalOpen} setUser={setUser}/>
+          <Modal setter={setIsModalOpen} setTarget={setTarget} >
+            <AddUser setIsModalOpen={setIsModalOpen} setUser={setUser} target={target} setTarget={setTarget} />
           </Modal>
         )
       }

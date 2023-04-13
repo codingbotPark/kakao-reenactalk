@@ -5,6 +5,7 @@ import {
   
   const useClickOutSide = (
     setter,
+    setTarget
   ) => {
 
     const el = useRef(null);
@@ -13,6 +14,7 @@ import {
       (e) => { // e.target을 확인한다
         if (el.current && !el.current.contains(e.target)) {
           setter(false);
+          setTarget({})
         }
       },
       [setter],
