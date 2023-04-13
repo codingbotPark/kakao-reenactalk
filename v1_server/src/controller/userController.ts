@@ -12,15 +12,17 @@ export default class UserController{
 
         // const {userId} = req.query
         const {finded, status, data} = await this.service.getUsers()
+
         return res.json({finded, status, data})
     }
 
     public signUpUser:MiddleWareType = async(req,res) => {
+        
         const {nickname,email,password,power}:userInputType = req.body
 
+        console.log(req.body)
+
         const {created,status} = await this.service.signUpUser({nickname,email,password,power})
-
-
 
         return res.json({created,status})
     }
@@ -31,12 +33,14 @@ export default class UserController{
     }
 
     public deleteUser:MiddleWareType = async(req,res) => {
-        const {deleted,status} = await this.service.deleteUser()
+        const {id} = req.body
+        const {deleted,status} = await this.service.deleteUser({id})
         return res.json({deleted,status})
     }
 
     public updateUser:MiddleWareType = async(req,res) => {
-        const {updated,status} = await this.service.updateUser()
+        const {id} = req.body
+        const {updated,status} = await this.service.updateUser({id})
         return res.json({updated,status})
     }
 

@@ -6,50 +6,34 @@ export default class UserService {
   constructor() {}
 
   public async getUsers() {
-    return {
-      finded: "1",
-      status: "200",
-      data: [
-        {
-          createdAt: "20035-07-05",
-          updatedAt: "20035-07-05",
-          id: 1,
-          email: "pbk575@gmail.com",
-          nickname: "codingbotPark",
-          password: "12345678",
-          power: 1,
-        },
-        {
-          createdAt: "20035-07-05",
-          updatedAt: "20035-07-05",
-          id: 2,
-          email: "pbk575@gmail.com",
-          nickname: "codingbotPark",
-          password: "12345678",
-          power: 1,
-        },
-        {
-          createdAt: "20035-07-05",
-          updatedAt: "20035-07-05",
-          id: 3,
-          email: "pbk575@gmail.com",
-          nickname: "codingbotPark",
-          password: "12345678",
-          power: 1,
-        },
-      ],
-    };
+
+    let res;
+    try{
+        res = await userRepository.find()
+        console.log(res)
+    }catch(err){
+        console.log(err)
+    }
+
+    return {finded:1,status:200,data:res};
   }
 
   public async signUpUser({ nickname, email, password, power }: userInputType) {
     const user = new User();
-    user.nickname = nickname;
+    console.log("-------",{ nickname, email, password, power },"-------")
     user.email = email;
+    user.nickname = nickname;
     user.password = password;
     user.power = power;
 
-    const res = await userRepository.save(user);
-    console.log(res);
+    console.log(user)
+
+    try{
+        const res = await userRepository.save(user);
+    }catch(err){
+        return {created:"0",status:"500"}
+    }
+
     return { created: "1", status: "200" };
   }
 
@@ -57,11 +41,29 @@ export default class UserService {
     return { logined: "1", status: "200" };
   }
 
-  public async deleteUser() {
+  public async deleteUser({id}:{id:number}) {
+    let res;
+    try {
+        await userRepository
+        .createQueryBuilder('user')
+        .softDelete()
+        .where("id = :id",{id:1})
+        .execute()
+    } catch(err){
+        console.log(err)
+        return {deleted:"0",status:"500"}
+    }  
     return { deleted: "1", status: "200" };
   }
 
-  public async updateUser() {
+  public async updateUser({id}:{id:number}) {
+
+    try{
+        
+    }catch(err){
+        console.log(err)
+    }
+
     return { updated: "1", status: "200" };
   }
 }
